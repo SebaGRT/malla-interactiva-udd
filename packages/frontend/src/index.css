@@ -25,21 +25,14 @@ body {
 }
 
 #root {
-  max-width: min(100%, 1500px);
+  /*
+   * El tablero crece de forma continua con la ventana: conserva el ancho
+   * habitual como mínimo, aprovecha el 88% del espacio disponible y se
+   * detiene al alcanzar el ancho útil de la malla completa.
+   */
+  max-width: min(100%, clamp(93.75rem, 88vw, 175rem));
   margin: 0 auto;
   padding: 1.25rem 1rem 2rem;
-}
-
-/*
- * Una ventana 21:9 tiene espacio horizontal para mostrar una mayor parte de
- * los 15 periodos. Se mantiene el ancho habitual en el resto de los equipos
- * y se permite que las ventanas ultraanchas crezcan hasta el ancho útil de
- * la malla, sin extender el contenido por toda la pantalla.
- */
-@media (min-width: 120rem) and (min-aspect-ratio: 7/3) {
-  #root {
-    max-width: min(88vw, 175rem);
-  }
 }
 
 .error {

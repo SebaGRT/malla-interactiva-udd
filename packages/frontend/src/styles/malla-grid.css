@@ -54,13 +54,13 @@
   gap: 0.2rem;
   padding: 0.35rem 0.5rem 0.35rem calc(var(--stripe-w) + 0.5rem);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-rule);
+  border: 1px solid var(--color-boundary);
   box-shadow: var(--shadow-sm);
   cursor: pointer;
   line-height: 1.15;
   font: inherit;
   color: var(--color-ink);
-  background: var(--color-card);
+  background: var(--color-surface-card);
   overflow: hidden;
   touch-action: manipulation;
   transition:
@@ -164,7 +164,8 @@
   isolation: isolate;
   width: 100%;
   min-height: var(--malla-card-height);
-  border: 1px solid var(--color-card-border);
+  --course-accent: var(--course-accent-light);
+  border: 1px solid var(--color-boundary);
   border-radius: var(--radius-md);
   padding: 0.6rem 0.6rem 0.5rem calc(var(--stripe-w) + 0.6rem);
   display: grid;
@@ -176,13 +177,17 @@
   font: inherit;
   text-align: left;
   color: var(--color-ink);
-  background: var(--color-card);
+  background: var(--color-surface-card);
   touch-action: manipulation;
   transition:
     transform var(--dur-fast) var(--ease-out),
     box-shadow var(--dur-fast) var(--ease-out),
     border-color var(--dur-fast) var(--ease-out),
     opacity var(--dur-fast) var(--ease-out);
+}
+
+[data-theme="dark"] .course-card {
+  --course-accent: var(--course-accent-dark);
 }
 
 .course-card__stripe {
@@ -197,7 +202,7 @@
 .course-card__surface {
   position: absolute;
   inset: 0;
-  background: var(--color-card);
+  background: var(--color-surface-card);
   z-index: -1;
 }
 
@@ -224,12 +229,12 @@
 }
 
 .course-card--blocked {
-  background: var(--color-card-muted);
+  background: var(--color-surface-muted);
   border-style: dashed;
 }
 
 .course-card--blocked .course-card__surface {
-  background: var(--color-card-muted);
+  background: var(--color-surface-muted);
 }
 
 .course-card--blocked .course-card__stripe {
@@ -239,7 +244,7 @@
 .course-card--approved {
   box-shadow:
     var(--shadow-sm),
-    inset 0 0 0 2px color-mix(in oklch, var(--color-success) 60%, transparent);
+    inset 0 0 0 2px color-mix(in oklch, var(--color-success-border) 60%, transparent);
 }
 
 .course-card__ribbon {
@@ -248,7 +253,7 @@
   right: 0;
   width: 1.7rem;
   height: 1.7rem;
-  background: var(--color-success);
+  background: var(--color-success-fill);
   clip-path: polygon(100% 0, 0 0, 100% 100%);
   z-index: 3;
   pointer-events: none;
@@ -261,7 +266,7 @@
   right: 0.18rem;
   font-size: 0.75rem;
   font-weight: 800;
-  color: oklch(98% 0 0);
+  color: var(--color-on-success);
   line-height: 1;
 }
 
@@ -283,8 +288,8 @@
   line-height: 1.15;
   padding: 0.2rem 0.35rem;
   border-radius: var(--radius-pill);
-  background: color-mix(in oklch, var(--course-accent) 12%, var(--color-card));
-  border: 1px solid color-mix(in oklch, var(--course-accent) 45%, var(--color-card-border));
+  background: color-mix(in oklch, var(--course-accent) 12%, var(--color-surface-card));
+  border: 1px solid color-mix(in oklch, var(--course-accent) 45%, var(--color-boundary));
   max-width: 64%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -296,8 +301,8 @@
   flex-shrink: 0;
   padding: 0.2rem 0.3rem;
   border-radius: 0.2rem;
-  border: 1px solid color-mix(in oklch, var(--course-accent) 45%, var(--color-card-border));
-  background: color-mix(in oklch, var(--course-accent) 10%, var(--color-card));
+  border: 1px solid color-mix(in oklch, var(--course-accent) 45%, var(--color-boundary));
+  background: color-mix(in oklch, var(--course-accent) 10%, var(--color-surface-card));
   color: var(--color-ink-2);
   font-size: 0.75rem;
   font-weight: 800;
@@ -351,8 +356,8 @@
   flex-shrink: 0;
   padding: 0.18rem 0.35rem;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--color-card-border);
-  background: color-mix(in oklch, var(--course-accent) 8%, var(--color-card));
+  border: 1px solid var(--color-boundary);
+  background: color-mix(in oklch, var(--course-accent) 8%, var(--color-surface-card));
   color: var(--color-ink);
   line-height: 1;
   box-shadow: 0 1px 0 oklch(0% 0 0 / 0.08);
@@ -383,7 +388,7 @@
 }
 
 .course-card__state--beyond {
-  background: color-mix(in oklch, var(--color-card) 88%, var(--color-paper));
+  background: var(--color-surface-beyond);
 }
 
 .course-card__lock {
@@ -431,8 +436,8 @@
 
 .malla-grid__year-disclosure {
   min-width: 0;
-  border: 1px solid var(--color-rule);
-  background: color-mix(in oklch, var(--color-paper-2) 70%, transparent);
+  border: 1px solid var(--color-boundary);
+  background: var(--color-surface-panel);
 }
 
 .malla-grid__year-summary {

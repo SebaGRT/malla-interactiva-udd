@@ -20,6 +20,7 @@ import {
   maxCoursesInColumn,
   type GridColumn,
 } from "../utils/grid.js";
+import { getCategoryAccentPair } from "../utils/color.js";
 import { useMediaQuery } from "../hooks/useMediaQuery.js";
 
 interface MallaGridProps {
@@ -53,10 +54,13 @@ export function MallaGrid({
   const isNarrow = useMediaQuery("(max-width: 47.999rem)");
 
   const categoryColors = useMemo(() => {
-    const map = new Map<string, string>();
+    const map = new Map<string, ReturnType<typeof getCategoryAccentPair>>();
 
     for (const categoryCode of Object.keys(categories)) {
-      map.set(categoryCode, getCategoryColor(categories, categoryCode));
+      map.set(
+        categoryCode,
+        getCategoryAccentPair(getCategoryColor(categories, categoryCode)),
+      );
     }
 
     return map;
@@ -80,7 +84,8 @@ export function MallaGrid({
       {column.period.courses.map((course) => {
         const eligibility = eligibilityByCode.get(course.code);
         const status = eligibility?.status ?? "available";
-        const accent = categoryColors.get(course.category) ?? "#607d8b";
+        const accent =
+          categoryColors.get(course.category) ?? getCategoryAccentPair("#607d8b");
 
         return (
           <CourseCard

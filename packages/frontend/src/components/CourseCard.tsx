@@ -1,9 +1,10 @@
 import { memo, useId, type CSSProperties } from "react";
 import type { Course, CourseStatus } from "@malla-udd/shared";
+import type { CategoryAccent } from "../utils/color.js";
 
 interface CourseCardProps {
   course: Course;
-  accent: string;
+  accent: CategoryAccent;
   status: CourseStatus;
   missingPrerequisites?: string[][];
   onToggleCourse: (code: string) => void;
@@ -40,7 +41,8 @@ function courseCardPropsAreEqual(
   return (
     previous.course.code === next.course.code &&
     previous.status === next.status &&
-    previous.accent === next.accent &&
+    previous.accent.light === next.accent.light &&
+    previous.accent.dark === next.accent.dark &&
     previous.onToggleCourse === next.onToggleCourse &&
     missingPrerequisitesEqual(
       previous.missingPrerequisites,
@@ -82,7 +84,8 @@ export const CourseCard = memo(function CourseCard({
   }
 
   const cardStyle = {
-    "--course-accent": accent,
+    "--course-accent-light": accent.light,
+    "--course-accent-dark": accent.dark,
   } as CSSProperties;
 
   return (

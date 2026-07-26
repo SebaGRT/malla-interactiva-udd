@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import type { CategoryCourseProgress, CreditSummary } from "@malla-udd/shared";
 import { ClearProgressDialog } from "./ClearProgressDialog.js";
+import { getCategoryAccentPair } from "../utils/color.js";
 
 interface ProgressSummaryProps {
   careerLabel: string;
@@ -146,43 +147,51 @@ export function CategoryProgressPanel({
           {!loading && hasError && categoryProgress.length === 0 && (
             <li className="spec-sidebar__loading">Datos no disponibles</li>
           )}
-          {categoryProgress.map((entry) => (
-            <li key={entry.categoryCode} className="spec-sidebar__cat">
-              <div className="spec-sidebar__cat-head">
-                <span className="spec-sidebar__cat-label">
-                  <span
-                    className="spec-sidebar__swatch"
-                    style={{ backgroundColor: entry.color }}
-                    aria-hidden="true"
-                  />
-                  <span className="spec-sidebar__cat-name">{entry.label}</span>
-                </span>
-                <span className="spec-sidebar__cat-code">{entry.categoryCode}</span>
-              </div>
-              <div className="spec-sidebar__row">
-                <span>
-                  {entry.approvedCount} / {entry.totalCount} ramos
-                </span>
-                <span>{entry.progressPercent}%</span>
-              </div>
-              <div
-                className="spec-sidebar__cat-bar"
-                role="progressbar"
-                aria-valuenow={entry.progressPercent}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-label={`${entry.label}: ${entry.progressPercent}%`}
+          {categoryProgress.map((entry) => {
+            const accent = getCategoryAccentPair(entry.color);
+
+            return (
+              <li
+                key={entry.categoryCode}
+                className="spec-sidebar__cat"
+                style={
+                  {
+                    "--category-accent-light": accent.light,
+                    "--category-accent-dark": accent.dark,
+                  } as CSSProperties
+                }
               >
+                <div className="spec-sidebar__cat-head">
+                  <span className="spec-sidebar__cat-label">
+                    <span className="spec-sidebar__swatch" aria-hidden="true" />
+                    <span className="spec-sidebar__cat-name">{entry.label}</span>
+                  </span>
+                  <span className="spec-sidebar__cat-code">{entry.categoryCode}</span>
+                </div>
+                <div className="spec-sidebar__row">
+                  <span>
+                    {entry.approvedCount} / {entry.totalCount} ramos
+                  </span>
+                  <span>{entry.progressPercent}%</span>
+                </div>
                 <div
-                  className="spec-sidebar__cat-bar-fill"
-                  style={{
-                    width: `${entry.progressPercent}%`,
-                    backgroundColor: entry.color,
-                  }}
-                />
-              </div>
-            </li>
-          ))}
+                  className="spec-sidebar__cat-bar"
+                  role="progressbar"
+                  aria-valuenow={entry.progressPercent}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`${entry.label}: ${entry.progressPercent}%`}
+                >
+                  <div
+                    className="spec-sidebar__cat-bar-fill"
+                    style={{
+                      width: `${entry.progressPercent}%`,
+                    }}
+                  />
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </details>
     </aside>

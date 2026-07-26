@@ -5,7 +5,7 @@
   line-height: 1.5;
   font-weight: 400;
   color: var(--color-ink);
-  background-color: var(--color-paper);
+  background-color: var(--color-surface-canvas);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -40,9 +40,9 @@ body {
   gap: 0.5rem;
   padding: 1rem 1.1rem;
   border-radius: var(--radius-sm);
-  border: 2px solid color-mix(in oklch, var(--color-danger) 35%, var(--color-rule));
-  background: color-mix(in oklch, var(--color-danger) 8%, var(--color-paper-2));
-  color: var(--color-danger);
+  border: 2px solid var(--color-danger-border);
+  background: var(--color-danger-surface);
+  color: var(--color-danger-text);
   font-size: var(--text-ui-sm);
   line-height: 1.45;
 }
@@ -55,11 +55,11 @@ body {
 .error button {
   justify-self: start;
   min-height: 2.75rem;
-  border: 2px solid var(--color-danger);
+  border: 2px solid var(--color-danger-border);
   border-radius: var(--radius-sm);
   padding: 0.55rem 0.85rem;
-  background: var(--color-card);
-  color: var(--color-danger);
+  background: var(--color-surface-card);
+  color: var(--color-danger-text);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -67,7 +67,7 @@ body {
 }
 
 .error button:hover {
-  background: color-mix(in oklch, var(--color-danger) 8%, var(--color-card));
+  background: var(--color-danger-surface);
 }
 
 .error button:focus-visible {

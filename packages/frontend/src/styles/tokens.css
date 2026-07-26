@@ -4,15 +4,25 @@
 
   --color-paper: oklch(96.5% 0.006 250);
   --color-paper-2: oklch(100% 0 0);
+  --color-surface-canvas: var(--color-paper);
+  --color-surface-panel: var(--color-paper-2);
   --color-ink: oklch(22% 0.02 250);
   --color-ink-2: oklch(38% 0.02 250);
   --color-ink-3: oklch(46% 0.02 250);
   --color-rule: oklch(88% 0.012 250);
+  --color-boundary: oklch(82% 0.012 250);
   --color-accent: oklch(52% 0.18 250);
   --color-accent-soft: oklch(94% 0.04 250);
-  --color-success: oklch(42% 0.14 145);
+  --color-success-text: oklch(36% 0.14 145);
+  --color-success-border: oklch(42% 0.14 145);
+  --color-success-fill: oklch(42% 0.14 145);
+  --color-on-success: oklch(98% 0 0);
   --color-success-soft: oklch(62% 0.17 145 / 0.22);
-  --color-danger: oklch(52% 0.18 25);
+  --color-danger-text: oklch(42% 0.18 25);
+  --color-danger-border: oklch(52% 0.18 25);
+  --color-danger-fill: oklch(52% 0.18 25);
+  --color-danger-surface: oklch(96% 0.035 25);
+  --color-on-danger: oklch(98% 0 0);
   --color-focus: oklch(55% 0.18 250);
 
   --color-semester-bg: oklch(91% 0.04 280);
@@ -25,7 +35,10 @@
   --color-year-ink: oklch(98% 0 0);
   --color-card: oklch(100% 0 0);
   --color-card-muted: oklch(94% 0.008 250);
-  --color-card-border: oklch(82% 0.012 250);
+  --color-card-border: var(--color-boundary);
+  --color-surface-card: var(--color-card);
+  --color-surface-muted: var(--color-card-muted);
+  --color-surface-beyond: oklch(98% 0.004 250);
 
   --text-caption: 0.8125rem;
   --text-ui-sm: 0.875rem;
@@ -67,14 +80,21 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --color-paper: oklch(16% 0.01 250);
-  --color-paper-2: oklch(20% 0.012 250);
+  --color-paper: oklch(14% 0.01 250);
+  --color-paper-2: oklch(19% 0.012 250);
+  --color-surface-canvas: var(--color-paper);
+  --color-surface-panel: var(--color-paper-2);
   --color-ink: oklch(94% 0.01 250);
   --color-ink-2: oklch(84% 0.01 250);
-  --color-ink-3: oklch(76% 0.01 250);
-  --color-rule: oklch(28% 0.01 250);
+  --color-ink-3: oklch(79% 0.01 250);
+  --color-rule: oklch(34% 0.01 250);
+  --color-boundary: oklch(54% 0.012 250);
   --color-accent: oklch(68% 0.14 250);
   --color-accent-soft: oklch(24% 0.04 250);
+  --color-success-text: oklch(70% 0.14 145);
+  --color-success-border: oklch(58% 0.14 145);
+  --color-success-fill: oklch(58% 0.14 145);
+  --color-on-success: oklch(98% 0 0);
   --color-semester-bg: oklch(28% 0.06 280);
   --color-semester-border: oklch(52% 0.1 280);
   --color-semester-ink: oklch(90% 0.04 280);
@@ -82,9 +102,26 @@
   --color-trimester-border: oklch(50% 0.08 180);
   --color-trimester-ink: oklch(90% 0.04 180);
   --color-year-bg: oklch(36% 0.02 250);
-  --color-card: oklch(22% 0.012 250);
-  --color-card-muted: oklch(25% 0.012 250);
-  --color-card-border: oklch(38% 0.012 250);
+  --color-card: oklch(26% 0.012 250);
+  --color-card-muted: oklch(21% 0.012 250);
+  --color-card-border: var(--color-boundary);
+  --color-surface-card: var(--color-card);
+  --color-surface-muted: var(--color-card-muted);
+  --color-surface-beyond: oklch(18% 0.012 250);
+  --color-danger-text: oklch(79% 0.12 25);
+  --color-danger-border: oklch(68% 0.16 25);
+  --color-danger-fill: oklch(55% 0.18 25);
+  --color-danger-surface: oklch(24% 0.035 25);
+  --color-on-danger: oklch(98% 0 0);
+
+  --shadow-sm:
+    0 1px 0 oklch(100% 0 0 / 0.06),
+    0 1px 2px oklch(0% 0 0 / 0.25),
+    0 5px 14px oklch(0% 0 0 / 0.3);
+  --shadow-md:
+    0 1px 0 oklch(100% 0 0 / 0.08),
+    0 3px 6px oklch(0% 0 0 / 0.28),
+    0 14px 30px oklch(0% 0 0 / 0.42);
 
   --bp-frame: color-mix(in oklch, var(--color-accent) 45%, var(--color-rule));
   --bp-dash: color-mix(in oklch, var(--color-accent) 50%, var(--color-rule));
@@ -95,4 +132,19 @@
     color-mix(in oklch, var(--color-rule) 70%, transparent) 11px,
     color-mix(in oklch, var(--color-rule) 70%, transparent) 12px
   );
+}
+
+@media (prefers-contrast: more) {
+  :root,
+  [data-theme="light"] {
+    --color-ink-3: oklch(40% 0.02 250);
+    --color-rule: oklch(82% 0.012 250);
+    --color-boundary: oklch(70% 0.012 250);
+  }
+
+  [data-theme="dark"] {
+    --color-ink-3: oklch(86% 0.01 250);
+    --color-rule: oklch(42% 0.01 250);
+    --color-boundary: oklch(62% 0.012 250);
+  }
 }

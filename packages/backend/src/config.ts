@@ -20,7 +20,7 @@ function resolveDataDir(repoRoot: string): string {
     : path.resolve(process.cwd(), process.env.DATA_DIR);
 }
 
-/** Repo root (packages/backend/src -> ../../..) */
+/** Raíz del repositorio (packages/backend/src -> ../../..) */
 export const repoRoot = resolveRepoRoot();
 const dataDir = resolveDataDir(repoRoot);
 
@@ -29,9 +29,9 @@ export const config = {
   port: Number(process.env.PORT ?? 3001),
   dataDir,
   databasePath: process.env.DATABASE_PATH ?? path.join(dataDir, "malla.db"),
-  /** Import JSON into SQLite on startup when the database is empty */
+  /** Importa el JSON a SQLite al iniciar si la base de datos está vacía. */
   dbAutoSeed: process.env.DB_AUTO_SEED !== "false",
-  /** `json` loads curriculum from data folders — used on Vercel (no SQLite). */
+  /** `json` carga la malla desde las carpetas de datos; se usa en Vercel (sin SQLite). */
   curriculumSource:
     process.env.CURRICULUM_SOURCE === "json" ? "json" : "sqlite",
   isVercel: process.env.VERCEL === "1",

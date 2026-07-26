@@ -11,7 +11,7 @@ export async function registerValidationRoutes(
     {
       schema: {
         tags: ["validation"],
-        summary: "Validate curriculum data integrity",
+        summary: "Validar la integridad de los datos curriculares",
         params: careerCodeParamsSchema,
         response: {
           200: { type: "object", additionalProperties: true },

@@ -12,3 +12,4 @@ data/malla.db
 data/malla.db-*
 .vercel
 .hallmark/
+.agents/

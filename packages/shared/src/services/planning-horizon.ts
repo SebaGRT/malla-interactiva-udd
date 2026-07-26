@@ -11,8 +11,8 @@ function resolveIndexes(
 }
 
 /**
- * Furthest academic semester reached by any approved course.
- * Defaults to 1 when nothing is approved yet (Semestre I).
+ * Semestre académico más avanzado alcanzado por alguna asignatura aprobada.
+ * Usa 1 de manera predeterminada si aún no hay asignaturas aprobadas (Semestre I).
  */
 export function getPlanningAnchorSemester(
   curriculum: Curriculum,
@@ -40,8 +40,8 @@ export function getPlanningAnchorFromPeriodMap(
 }
 
 /**
- * Last semester number the student may plan in (one academic year ahead).
- * Semestre I → through Semestre IV; Semestre III → through VI, etc.
+ * Último semestre que el estudiante puede planificar (un año académico hacia adelante).
+ * Semestre I → hasta Semestre IV; Semestre III → hasta Semestre VI, etc.
  */
 export function getMaxAllowedSemester(anchorSemester: number): number {
   const academicYear = Math.ceil(anchorSemester / 2);
@@ -145,8 +145,9 @@ function canInteractWithCourseIndexed(
 }
 
 /**
- * If every course in the period is approved, clears them all.
- * Otherwise approves every course that becomes eligible (respecting prereqs and horizon).
+ * Si todas las asignaturas del período están aprobadas, las desmarca.
+ * En caso contrario, aprueba todas las que estén habilitadas, respetando
+ * los prerrequisitos y el horizonte de planificación.
  */
 export function togglePeriodApprovals(
   curriculum: Curriculum,

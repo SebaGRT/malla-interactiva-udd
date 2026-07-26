@@ -25,7 +25,7 @@ export async function buildApp() {
     {
       schema: {
         tags: ["health"],
-        summary: "Health check",
+        summary: "Comprobar el estado del servicio",
         response: {
           200: healthResponseSchema,
         },

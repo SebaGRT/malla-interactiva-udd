@@ -45,7 +45,7 @@ async function loadCareersFromJson(): Promise<void> {
       const bundle = await readCareerJson(entry.name);
       careers[bundle.curriculum.meta.code.toLowerCase()] = bundle;
     } catch {
-      // Skip folders without a valid curriculum + categories pair.
+      // Omite las carpetas que no tengan una pareja válida de malla y categorías.
     }
   }
 }

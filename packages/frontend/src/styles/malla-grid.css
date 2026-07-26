@@ -145,7 +145,7 @@
   max-width: var(--malla-col-width);
 }
 
-/* Course card — fixed footprint for uniform grid */
+/* Tarjeta de asignatura: tamaño fijo para una grilla uniforme. */
 .course-card {
   position: relative;
   isolation: isolate;

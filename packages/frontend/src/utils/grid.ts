@@ -50,7 +50,7 @@ function formatPeriodHeader(period: Period): string {
   return String(period.trimester);
 }
 
-/** Year bands: semester pairs (1–2, 3–4) or trimester triplets per academic semester. */
+/** Franjas anuales: pares de semestres (1–2, 3–4) o tríos de trimestres por semestre académico. */
 export function buildYearBands(columns: GridColumn[]): YearBand[] {
   const bands: YearBand[] = [];
   let index = 0;

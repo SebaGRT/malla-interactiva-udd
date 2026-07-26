@@ -2,7 +2,7 @@
   "name": "malla-interactiva-udd",
   "version": "0.1.0",
   "private": true,
-  "description": "Interactive curriculum planner for Universidad del Desarrollo",
+  "description": "Planificador curricular interactivo para la Universidad del Desarrollo",
   "scripts": {
     "dev": "pnpm --filter @malla-udd/backend dev",
     "dev:frontend": "pnpm --filter @malla-udd/frontend dev",

@@ -1,8 +1,8 @@
 import type { Prerequisite } from "../schemas/curriculum.js";
 
 /**
- * Evaluates whether a set of prerequisites is satisfied.
- * Top-level items are ANDed; nested string arrays are OR groups.
+ * Evalúa si se cumple un conjunto de prerrequisitos.
+ * Los elementos de primer nivel usan AND; los arreglos anidados usan OR.
  */
 export function arePrerequisitesMet(
   prerequisites: Prerequisite[],
@@ -12,7 +12,7 @@ export function arePrerequisitesMet(
 }
 
 /**
- * Returns OR-groups that are not satisfied (each inner array is one unsatisfied OR group).
+ * Retorna los grupos OR incumplidos (cada arreglo interno es un grupo OR incumplido).
  */
 export function getUnmetPrerequisiteGroups(
   prerequisites: Prerequisite[],

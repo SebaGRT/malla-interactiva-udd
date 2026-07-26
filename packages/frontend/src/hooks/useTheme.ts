@@ -11,7 +11,7 @@ function readStoredTheme(): Theme {
       return stored;
     }
   } catch {
-    /* private browsing */
+    /* navegación privada */
   }
 
   return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -39,7 +39,7 @@ export function useTheme() {
     try {
       localStorage.setItem(STORAGE_KEY, theme);
     } catch {
-      /* private browsing */
+      /* navegación privada */
     }
   }, [theme]);
 

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-/** AND groups with optional OR sub-groups, e.g. ["A", ["B", "C"]] */
+/** Grupos AND con subgrupos OR opcionales; por ejemplo, ["A", ["B", "C"]]. */
 export const PrerequisiteSchema: z.ZodType<Prerequisite> = z.lazy(() =>
   z.union([z.string(), z.array(z.string())]),
 );
@@ -16,9 +16,9 @@ export const CourseSchema = z.object({
   category: z.string().min(1),
   prerequisites: PrerequisitesSchema.default([]),
   offering: z.enum(["P", "I", "A"]).default("A"),
-  /** Consecutive semesters (only in semester periods, s1–s4) */
+  /** Semestres consecutivos (solo en períodos semestrales, s1–s4). */
   spansSemesters: z.number().int().min(1).optional(),
-  /** Consecutive trimesters (only in trimester periods, from semestre 5) */
+  /** Trimestres consecutivos (solo en períodos trimestrales, desde el semestre 5). */
   spansTrimesters: z.number().int().min(1).optional(),
 });
 
@@ -36,7 +36,7 @@ export const TrimesterPeriodSchema = z.object({
   type: z.literal("trimester"),
   semester: z.number().int().min(5),
   trimesterInSemester: z.number().int().min(1).max(3),
-  /** Global trimester index (continues from year 1; IIT uses 9–20) */
+  /** Índice trimestral global (continúa desde primer año; IIT usa 9–20). */
   trimester: z.number().int().min(1),
   label: z.string().min(1),
   order: z.number().int().min(1),
@@ -49,9 +49,9 @@ export const PeriodSchema = z.discriminatedUnion("type", [
 ]);
 
 export const SchedulingSchema = z.object({
-  /** Years 1–2 use semester buckets only */
+  /** Primer y segundo año usan únicamente períodos semestrales. */
   semesterPeriodsThrough: z.literal(4),
-  /** From this semester onward, grid uses trimesters */
+  /** Desde este semestre, la malla usa períodos trimestrales. */
   trimesterFromSemester: z.literal(5),
 });
 
@@ -60,10 +60,11 @@ export const CurriculumMetaSchema = z.object({
   career: z.string().min(1),
   code: z.string().min(1),
   version: z.string().min(1),
-  /** Degree total; at IIT this includes extradisciplinary credits */
+  /** Total de la carrera; en IIT incluye los créditos extradisciplinarios. */
   totalCreditsRequired: z.number().int().positive(),
   /**
-   * Extradisciplinary credits included in totalCreditsRequired (sum of EEL courses in grid).
+   * Créditos extradisciplinarios incluidos en totalCreditsRequired
+   * (suma de las asignaturas EEL de la malla).
    */
   extradisciplinaryCredits: z.number().int().nonnegative().optional(),
   scheduling: SchedulingSchema.optional(),
@@ -132,9 +133,9 @@ export interface CreditSummary {
   required: number;
   remaining: number;
   progressPercent: number;
-  /** Sum of credits from coded courses in the malla */
+  /** Suma de créditos de las asignaturas con código presentes en la malla. */
   gridCreditsTotal: number;
-  /** Extradisciplinary credits included in required total (from meta) */
+  /** Créditos extradisciplinarios incluidos en el total exigido (desde meta). */
   extradisciplinaryCredits: number;
   byCategory: Record<string, { approved: number; label: string; color: string }>;
 }

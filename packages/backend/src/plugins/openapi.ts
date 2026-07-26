@@ -4,15 +4,15 @@ export async function registerOpenApi(app: FastifyInstance): Promise<void> {
   await app.register(import("@fastify/swagger"), {
     openapi: {
       info: {
-        title: "Malla Interactiva UDD API",
+        title: "API de Malla Interactiva UDD",
         description:
-          "Curriculum catalog, prerequisite eligibility, and credit progress for UDD careers.",
+          "Catálogo curricular, cumplimiento de prerrequisitos y avance de créditos de las carreras de la UDD.",
         version: "0.1.0",
       },
       tags: [
-        { name: "health", description: "Service health" },
-        { name: "careers", description: "Career curriculum and progress" },
-        { name: "validation", description: "Curriculum validation" },
+        { name: "health", description: "Estado del servicio" },
+        { name: "careers", description: "Mallas y avance curricular" },
+        { name: "validation", description: "Validación curricular" },
       ],
     },
   });

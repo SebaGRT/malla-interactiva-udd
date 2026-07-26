@@ -13,7 +13,7 @@ export const approvedBodySchema = {
     approved: {
       type: "array",
       items: { type: "string" },
-      description: "Course codes marked as approved/passed",
+      description: "Códigos de las asignaturas marcadas como aprobadas",
     },
   },
 } as const;
@@ -53,7 +53,7 @@ export const careersListResponseSchema = {
 export const careerCodeParamsSchema = {
   type: "object",
   properties: {
-    code: { type: "string", description: "Career code, e.g. IIT" },
+    code: { type: "string", description: "Código de la carrera; por ejemplo, IIT" },
   },
   required: ["code"],
 } as const;

@@ -18,7 +18,7 @@ export async function registerCareerRoutes(app: FastifyInstance): Promise<void> 
     {
       schema: {
         tags: ["careers"],
-        summary: "List available careers",
+        summary: "Enumerar las carreras disponibles",
         response: {
           200: careersListResponseSchema,
         },
@@ -34,7 +34,7 @@ export async function registerCareerRoutes(app: FastifyInstance): Promise<void> 
     {
       schema: {
         tags: ["careers"],
-        summary: "Get full curriculum and categories",
+        summary: "Obtener la malla curricular completa y sus categorías",
         params: careerCodeParamsSchema,
         response: {
           200: { type: "object", additionalProperties: true },
@@ -69,7 +69,8 @@ export async function registerCareerRoutes(app: FastifyInstance): Promise<void> 
     {
       schema: {
         tags: ["careers"],
-        summary: "Check which courses are approved, available, or blocked",
+        summary:
+          "Comprobar qué asignaturas están aprobadas, disponibles o bloqueadas",
         params: careerCodeParamsSchema,
         body: approvedBodySchema,
         response: {
@@ -110,7 +111,7 @@ export async function registerCareerRoutes(app: FastifyInstance): Promise<void> 
     {
       schema: {
         tags: ["careers"],
-        summary: "Credit progress toward degree total",
+        summary: "Consultar el avance respecto del total de créditos de la carrera",
         params: careerCodeParamsSchema,
         body: approvedBodySchema,
         response: {

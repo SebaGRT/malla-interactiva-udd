@@ -5,8 +5,8 @@
   --color-paper: oklch(96.5% 0.006 250);
   --color-paper-2: oklch(100% 0 0);
   --color-ink: oklch(22% 0.02 250);
-  --color-ink-2: oklch(46% 0.02 250);
-  --color-ink-3: oklch(58% 0.02 250);
+  --color-ink-2: oklch(38% 0.02 250);
+  --color-ink-3: oklch(46% 0.02 250);
   --color-rule: oklch(88% 0.012 250);
   --color-accent: oklch(52% 0.18 250);
   --color-accent-soft: oklch(94% 0.04 250);
@@ -23,6 +23,13 @@
   --color-trimester-ink: oklch(28% 0.08 180);
   --color-year-bg: oklch(48% 0.02 250);
   --color-year-ink: oklch(98% 0 0);
+  --color-card: oklch(100% 0 0);
+  --color-card-muted: oklch(94% 0.008 250);
+  --color-card-border: oklch(82% 0.012 250);
+
+  --text-caption: 0.8125rem;
+  --text-ui-sm: 0.875rem;
+  --text-body: 1rem;
 
   --bp-frame: color-mix(in oklch, var(--color-accent) 35%, var(--color-rule));
   --bp-dash: color-mix(in oklch, var(--color-accent) 40%, var(--color-rule));
@@ -46,10 +53,10 @@
   --dur-fast: 160ms;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --malla-col-width: 7.75rem;
-  --malla-card-height: 6.5rem;
-  --malla-header-height: 2.5rem;
-  --malla-year-height: 1.75rem;
+  --malla-col-width: 9.25rem;
+  --malla-card-height: 8rem;
+  --malla-header-height: 2.75rem;
+  --malla-year-height: 2rem;
   --malla-gap: 0.5rem;
 
   --font-display: "Archivo Black", "Arial Black", sans-serif;
@@ -63,8 +70,8 @@
   --color-paper: oklch(16% 0.01 250);
   --color-paper-2: oklch(20% 0.012 250);
   --color-ink: oklch(94% 0.01 250);
-  --color-ink-2: oklch(78% 0.01 250);
-  --color-ink-3: oklch(62% 0.01 250);
+  --color-ink-2: oklch(84% 0.01 250);
+  --color-ink-3: oklch(76% 0.01 250);
   --color-rule: oklch(28% 0.01 250);
   --color-accent: oklch(68% 0.14 250);
   --color-accent-soft: oklch(24% 0.04 250);
@@ -75,6 +82,9 @@
   --color-trimester-border: oklch(50% 0.08 180);
   --color-trimester-ink: oklch(90% 0.04 180);
   --color-year-bg: oklch(36% 0.02 250);
+  --color-card: oklch(22% 0.012 250);
+  --color-card-muted: oklch(25% 0.012 250);
+  --color-card-border: oklch(38% 0.012 250);
 
   --bp-frame: color-mix(in oklch, var(--color-accent) 45%, var(--color-rule));
   --bp-dash: color-mix(in oklch, var(--color-accent) 50%, var(--color-rule));
@@ -85,36 +95,4 @@
     color-mix(in oklch, var(--color-rule) 70%, transparent) 11px,
     color-mix(in oklch, var(--color-rule) 70%, transparent) 12px
   );
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-
-    --color-paper: oklch(16% 0.01 250);
-    --color-paper-2: oklch(20% 0.012 250);
-    --color-ink: oklch(94% 0.01 250);
-    --color-ink-2: oklch(78% 0.01 250);
-    --color-ink-3: oklch(62% 0.01 250);
-    --color-rule: oklch(28% 0.01 250);
-    --color-accent: oklch(68% 0.14 250);
-    --color-accent-soft: oklch(24% 0.04 250);
-    --color-semester-bg: oklch(28% 0.06 280);
-    --color-semester-border: oklch(52% 0.1 280);
-    --color-semester-ink: oklch(90% 0.04 280);
-    --color-trimester-bg: oklch(26% 0.05 180);
-    --color-trimester-border: oklch(50% 0.08 180);
-    --color-trimester-ink: oklch(90% 0.04 180);
-    --color-year-bg: oklch(36% 0.02 250);
-
-    --bp-frame: color-mix(in oklch, var(--color-accent) 45%, var(--color-rule));
-    --bp-dash: color-mix(in oklch, var(--color-accent) 50%, var(--color-rule));
-    --bp-ruled-h: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 11px,
-      color-mix(in oklch, var(--color-rule) 70%, transparent) 11px,
-      color-mix(in oklch, var(--color-rule) 70%, transparent) 12px
-    );
-  }
 }

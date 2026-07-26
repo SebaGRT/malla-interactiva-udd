@@ -1,10 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Curriculum } from "@malla-udd/shared";
 import { calculateCategoryCourseProgress, flattenCourses } from "@malla-udd/shared";
 import { getCurriculum } from "./api/client.js";
 import type { CurriculumApiResponse } from "./api/client.js";
 import { MallaGrid } from "./components/MallaGrid.js";
-import { SpecSidebar } from "./components/SpecSidebar.js";
+import {
+  CategoryProgressPanel,
+  ProgressSummary,
+} from "./components/SpecSidebar.js";
 import { useCourseApproval } from "./hooks/useCourseApproval.js";
 import { useTheme } from "./hooks/useTheme.js";
 import "./styles/malla-grid.css";
@@ -61,29 +64,38 @@ export function App() {
     );
   }, [approvedCodes, curriculum, data?.categories, indexes]);
 
-  useEffect(() => {
-    getCurriculum(DEFAULT_CAREER)
+  const loadCurriculum = useCallback(() => {
+    setLoading(true);
+    setError(null);
+
+    return getCurriculum(DEFAULT_CAREER)
       .then(setData)
-      .catch((err: unknown) => {
-        setError(err instanceof Error ? err.message : "Error loading curriculum");
+      .catch(() => {
+        setError("No pudimos cargar la malla");
       })
       .finally(() => setLoading(false));
   }, []);
 
-  const careerLabel = data
-    ? `Universidad del Desarrollo`
-    : "Universidad del Desarrollo";
+  useEffect(() => {
+    void loadCurriculum();
+  }, [loadCurriculum]);
+
+  const careerLabel = "Universidad del Desarrollo";
 
   return (
     <div className="malla-page malla-page--m2">
+      <a className="skip-link" href="#main-content">
+        Saltar al contenido principal
+      </a>
       <div className="m2-layout">
-        <SpecSidebar
+        <ProgressSummary
           careerLabel={careerLabel}
           creditSummary={creditSummary}
           approvedCount={approvedCodes.size}
           totalCourseCount={totalCourseCount}
-          categoryProgress={categoryProgress}
           loading={loading}
+          hasData={Boolean(data)}
+          hasError={Boolean(error)}
           onClear={clearApproved}
           theme={theme}
           onToggleTheme={toggleTheme}
@@ -93,9 +105,24 @@ export function App() {
           <span className="m2-canvas__label">
             {data?.meta.career ?? "malla curricular"}
           </span>
-          <main className="m2-canvas__body">
-            {loading && <p>Cargando malla…</p>}
-            {error && <p className="error">{error}</p>}
+          <main
+            id="main-content"
+            className="m2-canvas__body"
+            aria-busy={loading}
+          >
+            <p className="sr-only" role="status" aria-live="polite">
+              {loading ? "Cargando malla…" : ""}
+            </p>
+            {loading && <p className="loading-message">Cargando malla…</p>}
+            {error && (
+              <div className="error" role="alert">
+                <strong>{error}</strong>
+                <p>Revisa tu conexión e inténtalo de nuevo.</p>
+                <button type="button" onClick={() => void loadCurriculum()}>
+                  Reintentar
+                </button>
+              </div>
+            )}
             {data && (
               <MallaGrid
                 periods={data.periods}
@@ -109,6 +136,12 @@ export function App() {
             )}
           </main>
         </div>
+
+        <CategoryProgressPanel
+          categoryProgress={categoryProgress}
+          loading={loading}
+          hasError={Boolean(error)}
+        />
       </div>
     </div>
   );

@@ -1,35 +1,58 @@
+import { useRef, useState } from "react";
 import type { CategoryCourseProgress, CreditSummary } from "@malla-udd/shared";
+import { ClearProgressDialog } from "./ClearProgressDialog.js";
 
-interface SpecSidebarProps {
+interface ProgressSummaryProps {
   careerLabel: string;
   creditSummary: CreditSummary | null;
   approvedCount: number;
   totalCourseCount: number;
-  categoryProgress: CategoryCourseProgress[];
   loading?: boolean;
+  hasData: boolean;
+  hasError: boolean;
   onClear: () => void;
   theme: "light" | "dark";
   onToggleTheme: () => void;
 }
 
-export function SpecSidebar({
+interface CategoryProgressPanelProps {
+  categoryProgress: CategoryCourseProgress[];
+  loading?: boolean;
+  hasError: boolean;
+}
+
+export function ProgressSummary({
   careerLabel,
   creditSummary,
   approvedCount,
   totalCourseCount,
-  categoryProgress,
   loading = false,
+  hasData,
+  hasError,
   onClear,
   theme,
   onToggleTheme,
-}: SpecSidebarProps) {
+}: ProgressSummaryProps) {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const clearButtonRef = useRef<HTMLButtonElement>(null);
   const progress = creditSummary
     ? Math.min(100, Math.round(creditSummary.progressPercent))
     : 0;
   const remainingCourses = Math.max(totalCourseCount - approvedCount, 0);
+  const unavailable = loading || hasError || !hasData;
+
+  function closeDialog() {
+    setIsDialogOpen(false);
+    requestAnimationFrame(() => clearButtonRef.current?.focus());
+  }
+
+  function confirmClear() {
+    onClear();
+    closeDialog();
+  }
 
   return (
-    <aside className="spec-sidebar" aria-label="Panel de progreso">
+    <aside className="spec-sidebar spec-sidebar--summary" aria-label="Panel de progreso">
       <div className="spec-sidebar__block">
         <h1 className="spec-sidebar__title">Malla Interactiva UDD</h1>
         <p className="spec-sidebar__career">{careerLabel}</p>
@@ -37,8 +60,10 @@ export function SpecSidebar({
 
       <div className="spec-sidebar__block">
         <span className="spec-sidebar__label">Créditos</span>
-        {loading || !creditSummary ? (
+        {loading ? (
           <p className="spec-sidebar__loading">Cargando…</p>
+        ) : !creditSummary ? (
+          <p className="spec-sidebar__loading">Datos no disponibles</p>
         ) : (
           <>
             <span className="spec-sidebar__value">{creditSummary.approved}</span>
@@ -68,27 +93,58 @@ export function SpecSidebar({
         <span className="spec-sidebar__label">Ramos</span>
         <div className="spec-sidebar__row">
           <span>aprobados</span>
-          <span>{loading ? "—" : approvedCount}</span>
+          <span>{unavailable ? "—" : approvedCount}</span>
         </div>
         <div className="spec-sidebar__row">
           <span>restantes</span>
-          <span>{loading ? "—" : remainingCourses}</span>
+          <span>{unavailable ? "—" : remainingCourses}</span>
         </div>
         <button
+          ref={clearButtonRef}
           type="button"
           className="spec-sidebar__clear"
-          onClick={onClear}
-          disabled={loading || approvedCount === 0}
+          onClick={() => setIsDialogOpen(true)}
+          disabled={unavailable || approvedCount === 0}
         >
-          Limpiar
+          Borrar avance
         </button>
       </div>
 
-      <div className="spec-sidebar__block spec-sidebar__block--categories">
-        <span className="spec-sidebar__label">Categorías</span>
+      <button
+        type="button"
+        className="spec-sidebar__theme"
+        onClick={onToggleTheme}
+        aria-label={theme === "light" ? "Activar modo oscuro" : "Activar modo claro"}
+      >
+        {theme === "light" ? "Modo oscuro" : "Modo claro"}
+      </button>
+
+      <ClearProgressDialog
+        open={isDialogOpen}
+        onCancel={closeDialog}
+        onConfirm={confirmClear}
+      />
+    </aside>
+  );
+}
+
+export function CategoryProgressPanel({
+  categoryProgress,
+  loading = false,
+  hasError,
+}: CategoryProgressPanelProps) {
+  return (
+    <aside className="spec-sidebar spec-sidebar--categories" aria-label="Progreso por categoría">
+      <details className="spec-sidebar__details" open>
+        <summary className="spec-sidebar__details-summary">
+          <span className="spec-sidebar__label">Categorías</span>
+        </summary>
         <ul className="spec-sidebar__cats">
           {loading && categoryProgress.length === 0 && (
             <li className="spec-sidebar__loading">Cargando…</li>
+          )}
+          {!loading && hasError && categoryProgress.length === 0 && (
+            <li className="spec-sidebar__loading">Datos no disponibles</li>
           )}
           {categoryProgress.map((entry) => (
             <li key={entry.categoryCode} className="spec-sidebar__cat">
@@ -97,14 +153,16 @@ export function SpecSidebar({
                   <span
                     className="spec-sidebar__swatch"
                     style={{ backgroundColor: entry.color }}
-                    aria-hidden
+                    aria-hidden="true"
                   />
                   <span className="spec-sidebar__cat-name">{entry.label}</span>
                 </span>
                 <span className="spec-sidebar__cat-code">{entry.categoryCode}</span>
               </div>
               <div className="spec-sidebar__row">
-                <span>{entry.approvedCount} / {entry.totalCount} ramos</span>
+                <span>
+                  {entry.approvedCount} / {entry.totalCount} ramos
+                </span>
                 <span>{entry.progressPercent}%</span>
               </div>
               <div
@@ -126,16 +184,7 @@ export function SpecSidebar({
             </li>
           ))}
         </ul>
-      </div>
-
-      <button
-        type="button"
-        className="spec-sidebar__theme"
-        onClick={onToggleTheme}
-        aria-label={theme === "light" ? "Activar modo oscuro" : "Activar modo claro"}
-      >
-        {theme === "light" ? "Modo oscuro" : "Modo claro"}
-      </button>
+      </details>
     </aside>
   );
 }

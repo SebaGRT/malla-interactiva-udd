@@ -6,6 +6,8 @@
   font-weight: 400;
   color: var(--color-ink);
   background-color: var(--color-paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html,
@@ -29,12 +31,60 @@ body {
 }
 
 .error {
-  padding: 0.65rem 0.85rem;
-  border-radius: 0;
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-sm);
   border: 2px solid color-mix(in oklch, var(--color-danger) 35%, var(--color-rule));
   background: color-mix(in oklch, var(--color-danger) 8%, var(--color-paper-2));
   color: var(--color-danger);
-  font-size: 0.85rem;
+  font-size: var(--text-ui-sm);
+  line-height: 1.45;
+}
+
+.error p {
+  margin: 0;
+  color: var(--color-ink);
+}
+
+.error button {
+  justify-self: start;
+  min-height: 2.75rem;
+  border: 2px solid var(--color-danger);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.85rem;
+  background: var(--color-card);
+  color: var(--color-danger);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.error button:hover {
+  background: color-mix(in oklch, var(--color-danger) 8%, var(--color-card));
+}
+
+.error button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.loading-message {
+  color: var(--color-ink-2);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

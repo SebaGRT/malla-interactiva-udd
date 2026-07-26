@@ -1,10 +1,9 @@
-import { memo, type CSSProperties } from "react";
+import { memo, useId, type CSSProperties } from "react";
 import type { Course, CourseStatus } from "@malla-udd/shared";
 
 interface CourseCardProps {
   course: Course;
   accent: string;
-  foreground: string;
   status: CourseStatus;
   missingPrerequisites?: string[][];
   onToggleCourse: (code: string) => void;
@@ -42,7 +41,6 @@ function courseCardPropsAreEqual(
     previous.course.code === next.course.code &&
     previous.status === next.status &&
     previous.accent === next.accent &&
-    previous.foreground === next.foreground &&
     previous.onToggleCourse === next.onToggleCourse &&
     missingPrerequisitesEqual(
       previous.missingPrerequisites,
@@ -54,7 +52,6 @@ function courseCardPropsAreEqual(
 export const CourseCard = memo(function CourseCard({
   course,
   accent,
-  foreground,
   status,
   missingPrerequisites = [],
   onToggleCourse,
@@ -63,20 +60,29 @@ export const CourseCard = memo(function CourseCard({
   const isApproved = status === "approved";
   const isBlocked = status === "blocked";
   const isBeyondHorizon = status === "beyond_horizon";
-  const isDisabled = isBlocked || isBeyondHorizon;
+  const isUnavailable = isBlocked || isBeyondHorizon;
+  const descriptionId = `course-${useId().replace(/:/g, "")}-state`;
 
   let title = `${course.code} — ${course.name}`;
+  let stateDescription = "";
+  let visibleState = "";
   if (isBeyondHorizon) {
     title += " (fuera del horizonte de planificación)";
+    stateDescription = "Fuera del plan actual.";
+    visibleState = "Fuera del plan";
   } else if (isBlocked && missingPrerequisites.length > 0) {
-    title += ` (prerrequisitos: ${formatMissingPrerequisites(missingPrerequisites)})`;
+    const prerequisites = formatMissingPrerequisites(missingPrerequisites);
+    title += ` (prerrequisitos: ${prerequisites})`;
+    stateDescription = `Bloqueado. Prerrequisitos pendientes: ${prerequisites}.`;
+    visibleState = `Requiere ${missingPrerequisites[0]?.[0] ?? "prerrequisitos"}`;
   } else if (isBlocked) {
     title += " (prerrequisitos pendientes)";
+    stateDescription = "Bloqueado. Prerrequisitos pendientes.";
+    visibleState = "Prerrequisitos pendientes";
   }
 
   const cardStyle = {
     "--course-accent": accent,
-    "--course-fg": foreground,
   } as CSSProperties;
 
   return (
@@ -93,9 +99,13 @@ export const CourseCard = memo(function CourseCard({
       style={cardStyle}
       title={title}
       aria-pressed={isApproved}
-      aria-disabled={isDisabled}
-      disabled={isDisabled}
-      onClick={() => onToggleCourse(course.code)}
+      aria-disabled={isUnavailable || undefined}
+      aria-describedby={isUnavailable ? descriptionId : undefined}
+      onClick={() => {
+        if (!isUnavailable) {
+          onToggleCourse(course.code);
+        }
+      }}
     >
       <span className="course-card__stripe" aria-hidden />
       <span className="course-card__surface" aria-hidden />
@@ -108,11 +118,24 @@ export const CourseCard = memo(function CourseCard({
       <p className="course-card__name">{course.name}</p>
 
       <footer className="course-card__foot">
+        {visibleState ? (
+          <span className="course-card__status" aria-hidden="true">
+            {visibleState}
+          </span>
+        ) : (
+          <span aria-hidden="true" />
+        )}
         <span className="course-card__credits">
           <span className="course-card__credits-value">{credits}</span>
           <span className="course-card__credits-label">cr</span>
         </span>
       </footer>
+
+      {stateDescription && (
+        <span id={descriptionId} className="sr-only">
+          {stateDescription}
+        </span>
+      )}
 
       {isBeyondHorizon && (
         <span className="course-card__state course-card__state--beyond" aria-hidden>

@@ -1,4 +1,10 @@
-import { memo, useMemo, type CSSProperties } from "react";
+import {
+  memo,
+  useMemo,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 import type {
   Categories,
   CourseEligibility,
@@ -14,7 +20,7 @@ import {
   maxCoursesInColumn,
   type GridColumn,
 } from "../utils/grid.js";
-import { textColorForBackground } from "../utils/color.js";
+import { useMediaQuery } from "../hooks/useMediaQuery.js";
 
 interface MallaGridProps {
   periods: Period[];
@@ -24,6 +30,11 @@ interface MallaGridProps {
   eligibilityByCode: Map<string, CourseEligibility>;
   onToggleCourse: (code: string) => void;
   onTogglePeriod: (periodId: string) => void;
+}
+
+interface YearGroup {
+  label: string;
+  columns: GridColumn[];
 }
 
 export function MallaGrid({
@@ -37,17 +48,15 @@ export function MallaGrid({
 }: MallaGridProps) {
   const columns = useMemo(() => buildGridColumns(periods), [periods]);
   const yearBands = useMemo(() => buildYearBands(columns), [columns]);
+  const yearGroups = useMemo(() => groupColumnsByYear(columns), [columns]);
   const maxRows = useMemo(() => maxCoursesInColumn(columns), [columns]);
+  const isNarrow = useMediaQuery("(max-width: 47.999rem)");
 
   const categoryColors = useMemo(() => {
-    const map = new Map<string, { accent: string; foreground: string }>();
+    const map = new Map<string, string>();
 
     for (const categoryCode of Object.keys(categories)) {
-      const accent = getCategoryColor(categories, categoryCode);
-      map.set(categoryCode, {
-        accent,
-        foreground: textColorForBackground(accent),
-      });
+      map.set(categoryCode, getCategoryColor(categories, categoryCode));
     }
 
     return map;
@@ -66,82 +75,178 @@ export function MallaGrid({
     return map;
   }, [approvedCodes, columns]);
 
+  const renderCourses = (column: GridColumn) => (
+    <div className="malla-grid__column-courses">
+      {column.period.courses.map((course) => {
+        const eligibility = eligibilityByCode.get(course.code);
+        const status = eligibility?.status ?? "available";
+        const accent = categoryColors.get(course.category) ?? "#607d8b";
+
+        return (
+          <CourseCard
+            key={course.code}
+            course={course}
+            accent={accent}
+            status={status}
+            missingPrerequisites={eligibility?.missingPrerequisites}
+            onToggleCourse={onToggleCourse}
+          />
+        );
+      })}
+    </div>
+  );
+
   return (
     <section className="malla-grid" aria-label={`Malla ${careerName}`}>
-      <div className="malla-grid__scroll">
-        <div
-          className="malla-grid__canvas"
-          style={
-            {
-              "--malla-columns": columns.length,
-              "--malla-rows": maxRows,
-            } as CSSProperties
-          }
-        >
-          <div className="malla-grid__year-row" role="row">
-            {yearBands.map((band) => (
-              <div
-                key={`${band.startColumn}-${band.label}`}
-                className="malla-grid__year-band"
-                style={{
-                  gridColumn: `${band.startColumn + 1} / span ${band.columnCount}`,
-                }}
-              >
-                {band.label}
-              </div>
-            ))}
-          </div>
+      {isNarrow ? (
+        <MobileMallaGrid
+          yearGroups={yearGroups}
+          periodSelectionById={periodSelectionById}
+          onTogglePeriod={onTogglePeriod}
+          renderCourses={renderCourses}
+        />
+      ) : (
+        <div className="malla-grid__scroll">
+          <div
+            className="malla-grid__canvas"
+            style={
+              {
+                "--malla-columns": columns.length,
+                "--malla-rows": maxRows,
+              } as CSSProperties
+            }
+          >
+            <div className="malla-grid__year-row">
+              {yearBands.map((band) => (
+                <div
+                  key={`${band.startColumn}-${band.label}`}
+                  className="malla-grid__year-band"
+                  style={{
+                    gridColumn: `${band.startColumn + 1} / span ${band.columnCount}`,
+                  }}
+                >
+                  {band.label}
+                </div>
+              ))}
+            </div>
 
-          <div className="malla-grid__period-row" role="row">
-            {columns.map((column, index) => (
-              <PeriodHeader
-                key={column.period.id}
-                column={column}
-                selectionState={
-                  periodSelectionById.get(column.period.id) ?? "none"
-                }
-                isFirstTrimester={
-                  column.period.type === "trimester" &&
-                  columns[index - 1]?.period.type === "semester"
-                }
-                onTogglePeriod={onTogglePeriod}
-              />
-            ))}
-          </div>
+            <div className="malla-grid__period-row">
+              {columns.map((column, index) => (
+                <PeriodHeader
+                  key={column.period.id}
+                  column={column}
+                  selectionState={
+                    periodSelectionById.get(column.period.id) ?? "none"
+                  }
+                  isFirstTrimester={
+                    column.period.type === "trimester" &&
+                    columns[index - 1]?.period.type === "semester"
+                  }
+                  onTogglePeriod={onTogglePeriod}
+                />
+              ))}
+            </div>
 
-          <div className="malla-grid__courses" role="rowgroup">
-            {columns.map((column) => (
-              <div
-                key={column.period.id}
-                className="malla-grid__column"
-                aria-label={column.period.label}
-              >
-                {column.period.courses.map((course) => {
-                  const eligibility = eligibilityByCode.get(course.code);
-                  const status = eligibility?.status ?? "available";
-                  const colors = categoryColors.get(course.category) ?? {
-                    accent: "#607d8b",
-                    foreground: textColorForBackground("#607d8b"),
-                  };
-
-                  return (
-                    <CourseCard
-                      key={course.code}
-                      course={course}
-                      accent={colors.accent}
-                      foreground={colors.foreground}
-                      status={status}
-                      missingPrerequisites={eligibility?.missingPrerequisites}
-                      onToggleCourse={onToggleCourse}
-                    />
-                  );
-                })}
-              </div>
-            ))}
+            <div className="malla-grid__courses">
+              {columns.map((column) => (
+                <div
+                  key={column.period.id}
+                  className="malla-grid__column"
+                  role="group"
+                  aria-label={column.period.label}
+                >
+                  {renderCourses(column)}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
+  );
+}
+
+function groupColumnsByYear(columns: GridColumn[]): YearGroup[] {
+  const groups = new Map<number, GridColumn[]>();
+
+  for (const column of columns) {
+    const year = Math.ceil(column.semester / 2);
+    const group = groups.get(year) ?? [];
+    group.push(column);
+    groups.set(year, group);
+  }
+
+  return [...groups.entries()].map(([year, groupColumns]) => ({
+    label: `Año ${year}`,
+    columns: groupColumns,
+  }));
+}
+
+function MobileMallaGrid({
+  yearGroups,
+  periodSelectionById,
+  onTogglePeriod,
+  renderCourses,
+}: {
+  yearGroups: YearGroup[];
+  periodSelectionById: Map<string, PeriodSelectionState>;
+  onTogglePeriod: (periodId: string) => void;
+  renderCourses: (column: GridColumn) => ReactNode;
+}) {
+  const [openYears, setOpenYears] = useState(() => new Set([yearGroups[0]?.label]));
+
+  return (
+    <div className="malla-grid__mobile">
+      {yearGroups.map((group) => (
+        <details
+          key={group.label}
+          className="malla-grid__year-disclosure"
+          open={openYears.has(group.label)}
+          onToggle={(event) => {
+            const isOpen = event.currentTarget.open;
+            setOpenYears((previous) => {
+              const next = new Set(previous);
+              if (isOpen) {
+                next.add(group.label);
+              } else {
+                next.delete(group.label);
+              }
+              return next;
+            });
+          }}
+        >
+          <summary className="malla-grid__year-summary">{group.label}</summary>
+          <p className="malla-grid__mobile-hint">
+            Desliza para ver los siguientes periodos.
+          </p>
+          <div className="malla-grid__mobile-scroll">
+            <div className="malla-grid__mobile-columns">
+              {group.columns.map((column, index) => (
+                <div
+                  key={column.period.id}
+                  className="malla-grid__mobile-column"
+                  role="group"
+                  aria-label={column.period.label}
+                >
+                  <PeriodHeader
+                    column={column}
+                    selectionState={
+                      periodSelectionById.get(column.period.id) ?? "none"
+                    }
+                    isFirstTrimester={
+                      column.period.type === "trimester" &&
+                      group.columns[index - 1]?.period.type === "semester"
+                    }
+                    onTogglePeriod={onTogglePeriod}
+                  />
+                  {renderCourses(column)}
+                </div>
+              ))}
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
   );
 }
 

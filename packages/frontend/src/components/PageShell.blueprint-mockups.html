@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blueprint mockups — Malla Interactiva UDD</title>
+    <link rel="stylesheet" href="../styles/tokens.css" />
+    <link rel="stylesheet" href="../styles/credit-stats.css" />
+    <link rel="stylesheet" href="../styles/malla-grid.css" />
+    <style>
+      /* Hallmark · pre-emit critique: P5 H5 E5 S5 R4 V5 */
+      /* Hallmark · preview: blueprint mockups · baseline V9 · tone: technical · genre: editorial */
+
+      :root {
+        --bp-sheet: var(--color-paper-2);
+        --bp-frame: color-mix(in oklch, var(--color-accent) 35%, var(--color-rule));
+        --bp-dash: color-mix(in oklch, var(--color-accent) 40%, var(--color-rule));
+        --bp-ruled-h: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 11px,
+          color-mix(in oklch, var(--color-rule) 55%, transparent) 11px,
+          color-mix(in oklch, var(--color-rule) 55%, transparent) 12px
+        );
+        --bp-ruled-v: repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 47px,
+          color-mix(in oklch, var(--color-rule) 35%, transparent) 47px,
+          color-mix(in oklch, var(--color-rule) 35%, transparent) 48px
+        );
+        --bp-mono: var(--font-mono);
+        --bp-invert-paper: color-mix(in oklch, var(--color-ink) 90%, var(--color-accent));
+        --bp-invert-ink: color-mix(in oklch, var(--color-paper-2) 88%, var(--color-accent-soft));
+        --bp-invert-line: color-mix(in oklch, var(--color-accent) 55%, var(--color-paper-2));
+        --bp-invert-panel: var(--color-paper-2);
+        --bp-crosshair: color-mix(in oklch, var(--color-accent) 25%, transparent);
+      }
+
+      html,
+      body {
+        overflow-x: clip;
+      }
+
+      body {
+        margin: 0;
+        padding: 1.25rem 1rem 3rem;
+        font-family: "IBM Plex Sans", system-ui, sans-serif;
+        background: var(--color-paper);
+        color: var(--color-ink);
+      }
+
+      .catalog {
+        max-width: 56rem;
+        margin: 0 auto 2.5rem;
+        min-width: 0;
+      }
+
+      .catalog h1 {
+        margin: 0 0 0.45rem;
+        font-size: 1.35rem;
+        font-weight: 800;
+        font-style: normal;
+      }
+
+      .catalog p {
+        margin: 0;
+        font-size: 0.88rem;
+        color: var(--color-ink-2);
+        line-height: 1.45;
+      }
+
+      .mockups {
+        display: flex;
+        flex-direction: column;
+        gap: 3.5rem;
+        max-width: 56rem;
+        margin: 0 auto;
+        min-width: 0;
+      }
+
+      .mockup {
+        min-width: 0;
+      }
+
+      .mockup__tag {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-family: var(--bp-mono);
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+      }
+
+      .mockup__title {
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 1.05rem;
+        font-weight: 800;
+        font-style: normal;
+      }
+
+      .mockup__desc {
+        margin: 0 0 1rem;
+        font-size: 0.78rem;
+        color: var(--color-ink-3);
+        line-height: 1.4;
+        max-width: 40rem;
+      }
+
+      /* Shared blueprint primitives */
+      .bp-title {
+        margin: 0;
+        font-family: var(--bp-mono);
+        font-size: 1.05rem;
+        font-weight: 700;
+        font-style: normal;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        overflow-wrap: anywhere;
+        min-width: 0;
+      }
+
+      .bp-sub {
+        margin: 0.2rem 0 0;
+        font-family: var(--bp-mono);
+        font-size: 0.68rem;
+        color: var(--color-ink-2);
+        overflow-wrap: anywhere;
+        min-width: 0;
+      }
+
+      .bp-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .bp-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.28rem;
+        padding: 0.22rem 0.48rem;
+        border: 1px dashed var(--bp-dash);
+        border-radius: var(--radius-pill);
+        background: color-mix(in oklch, var(--color-paper-2) 70%, var(--color-paper));
+        font-family: var(--bp-mono);
+        font-size: 0.6rem;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .bp-chip__dot {
+        width: 0.42rem;
+        height: 0.42rem;
+        border-radius: var(--radius-pill);
+        flex-shrink: 0;
+      }
+
+      .bp-sheet {
+        padding: 1rem;
+        border: 1px solid var(--bp-frame);
+        background: var(--bp-sheet);
+        min-width: 0;
+      }
+
+      .bp-ruled {
+        background: var(--bp-ruled-h);
+      }
+
+      .bp-footer {
+        font-family: var(--bp-mono);
+        font-size: 0.62rem;
+        color: var(--color-ink-3);
+      }
+
+      .bp-footer a {
+        color: var(--color-accent);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .bp-credit-stats.credit-stats {
+        border-style: dashed;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .bp-reg {
+        position: relative;
+      }
+
+      .bp-reg::before,
+      .bp-reg::after {
+        content: "";
+        position: absolute;
+        width: 0.65rem;
+        height: 0.65rem;
+        border-color: var(--bp-dash);
+        border-style: solid;
+        pointer-events: none;
+      }
+
+      .bp-reg::before {
+        top: 0.35rem;
+        left: 0.35rem;
+        border-width: 1px 0 0 1px;
+      }
+
+      .bp-reg::after {
+        top: 0.35rem;
+        right: 0.35rem;
+        border-width: 1px 1px 0 0;
+      }
+
+      .bp-reg__br,
+      .bp-reg__bl {
+        position: absolute;
+        width: 0.65rem;
+        height: 0.65rem;
+        border-color: var(--bp-dash);
+        border-style: solid;
+        pointer-events: none;
+      }
+
+      .bp-reg__br {
+        right: 0.35rem;
+        bottom: 0.35rem;
+        border-width: 0 1px 1px 0;
+      }
+
+      .bp-reg__bl {
+        left: 0.35rem;
+        bottom: 0.35rem;
+        border-width: 0 0 1px 1px;
+      }
+
+      /* ── M1 Field Sheet ── */
+      .m1 {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .m1__head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+
+      .m1__canvas {
+        padding: 0.65rem 0.35rem 0.85rem;
+        border: 1px dashed var(--bp-dash);
+        border-radius: 0;
+      }
+
+      /* ── M2 Drafting Board ── */
+      .m2 {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.75rem;
+      }
+
+      .m2__layout {
+        display: grid;
+        grid-template-columns: minmax(9rem, 11.5rem) minmax(0, 1fr);
+        gap: 0.65rem;
+        align-items: stretch;
+        min-width: 0;
+      }
+
+      .m2__spec {
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+        padding: 0.65rem;
+        border: 1px dashed var(--bp-dash);
+        background: color-mix(in oklch, var(--color-paper) 40%, var(--color-paper-2));
+        font-family: var(--bp-mono);
+        font-size: 0.62rem;
+        min-width: 0;
+      }
+
+      .m2__spec-block {
+        padding-bottom: 0.45rem;
+        border-bottom: 1px solid var(--color-rule);
+      }
+
+      .m2__spec-block:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .m2__spec-label {
+        display: block;
+        margin-bottom: 0.25rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-ink-3);
+      }
+
+      .m2__spec-value {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--color-accent);
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+
+      .m2__spec-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.35rem;
+        margin-top: 0.2rem;
+      }
+
+      .m2__spec-bar {
+        height: 0.3rem;
+        margin-top: 0.35rem;
+        border-radius: var(--radius-pill);
+        background: var(--color-rule);
+        overflow: hidden;
+      }
+
+      .m2__spec-bar-fill {
+        height: 100%;
+        width: 22%;
+        background: var(--color-accent);
+      }
+
+      .m2__cat-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.35rem;
+        margin-top: 0.28rem;
+      }
+
+      .m2__canvas {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+        padding: 0.55rem;
+        border: 2px solid var(--bp-frame);
+        min-width: 0;
+      }
+
+      .m2__canvas-label {
+        font-family: var(--bp-mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-ink-3);
+      }
+
+      /* ── M3 Plot Roll ── */
+      .m3 {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border: 1px solid var(--bp-frame);
+        overflow: hidden;
+      }
+
+      .m3__banner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.55rem 0.75rem;
+        background: color-mix(in oklch, var(--color-accent) 8%, var(--color-paper-2));
+        border-bottom: 1px solid var(--bp-frame);
+      }
+
+      .m3__stamp {
+        font-family: var(--bp-mono);
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        padding: 0.25rem 0.45rem;
+        border: 1px solid var(--bp-dash);
+        white-space: nowrap;
+      }
+
+      .m3__readout {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-bottom: 1px dashed var(--bp-dash);
+        background: var(--color-paper-2);
+      }
+
+      .m3__readout-cell {
+        padding: 0.45rem 0.55rem;
+        border-right: 1px dashed var(--bp-dash);
+        font-family: var(--bp-mono);
+        font-size: 0.58rem;
+        min-width: 0;
+      }
+
+      .m3__readout-cell:last-child {
+        border-right: none;
+      }
+
+      .m3__readout-cell strong {
+        display: block;
+        font-size: 0.95rem;
+        color: var(--color-accent);
+        margin-bottom: 0.08rem;
+      }
+
+      .m3__body {
+        padding: 0.65rem 0.75rem 0.85rem;
+        background: var(--bp-ruled-h);
+      }
+
+      .m3__scroll-frame {
+        padding: 0.5rem 0.35rem;
+        border: 1px dashed var(--bp-dash);
+        background: var(--color-paper-2);
+        overflow-x: auto;
+      }
+
+      .m3__margin-cats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-top: 0.65rem;
+        padding-top: 0.55rem;
+        border-top: 1px dashed var(--bp-dash);
+      }
+
+      /* ── M4 Negative Blueprint ── */
+      .m4 {
+        padding: 1rem;
+        background: var(--bp-invert-paper);
+        color: var(--bp-invert-ink);
+        border: 1px solid var(--bp-invert-line);
+      }
+
+      .m4 .bp-title,
+      .m4 .bp-sub,
+      .m4 .bp-footer {
+        color: var(--bp-invert-ink);
+      }
+
+      .m4 .bp-chip {
+        border-color: var(--bp-invert-line);
+        background: color-mix(in oklch, var(--bp-invert-paper) 80%, var(--color-accent));
+        color: var(--bp-invert-ink);
+      }
+
+      .m4__head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding-bottom: 0.65rem;
+        border-bottom: 1px solid var(--bp-invert-line);
+        margin-bottom: 0.75rem;
+      }
+
+      .m4 .bp-credit-stats.credit-stats {
+        border-color: var(--bp-invert-line);
+        color: var(--bp-invert-ink);
+      }
+
+      .m4 .bp-credit-stats .credit-stats__credits,
+      .m4 .bp-credit-stats .credit-stats__meta {
+        color: var(--bp-invert-ink);
+      }
+
+      .m4 .bp-credit-stats .credit-stats__clear {
+        background: color-mix(in oklch, var(--bp-invert-paper) 70%, var(--color-accent));
+        border-color: var(--bp-invert-line);
+        color: var(--bp-invert-ink);
+      }
+
+      .m4__vellum {
+        padding: 0.65rem 0.35rem;
+        background: var(--bp-invert-panel);
+        border: 2px solid var(--bp-invert-line);
+        border-radius: var(--radius-sm);
+      }
+
+      .m4__vellum-note {
+        font-family: var(--bp-mono);
+        font-size: 0.55rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-ink-3);
+        margin-bottom: 0.35rem;
+      }
+
+      /* ── M5 Assembly Grid ── */
+      .m5 {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+
+      .m5__panels {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
+        gap: 0.45rem;
+      }
+
+      .m5__panel {
+        padding: 0.55rem 0.65rem;
+        border: 1px dashed var(--bp-dash);
+        background: var(--color-paper-2);
+        min-width: 0;
+      }
+
+      .m5__panel--actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.35rem;
+      }
+
+      .m5__action {
+        border: 1px solid var(--color-rule);
+        border-radius: var(--radius-sm);
+        padding: 0.32rem 0.55rem;
+        background: var(--color-paper);
+        font-family: var(--bp-mono);
+        font-size: 0.62rem;
+        font-weight: 700;
+        white-space: nowrap;
+        cursor: default;
+      }
+
+      .m5__frame-wrap {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(6.5rem, 8rem);
+        gap: 0.45rem;
+        align-items: start;
+        min-width: 0;
+      }
+
+      .m5__frame {
+        position: relative;
+        padding: 1.1rem 0.55rem 0.65rem;
+        border: 2px solid var(--bp-frame);
+        background: var(--bp-ruled-h);
+        min-width: 0;
+      }
+
+      .m5__frame::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--bp-ruled-v);
+        pointer-events: none;
+        opacity: 0.45;
+      }
+
+      .m5__crosshair-v,
+      .m5__crosshair-h {
+        position: absolute;
+        background: var(--bp-crosshair);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .m5__crosshair-v {
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 1px;
+        transform: translateX(-50%);
+      }
+
+      .m5__crosshair-h {
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 1px;
+        transform: translateY(-50%);
+      }
+
+      .m5__frame .malla-grid {
+        position: relative;
+        z-index: 1;
+      }
+
+      .m5__legend {
+        padding: 0.55rem;
+        border: 1px dashed var(--bp-dash);
+        background: var(--color-paper-2);
+        font-family: var(--bp-mono);
+        font-size: 0.58rem;
+        min-width: 0;
+      }
+
+      .m5__legend-title {
+        display: block;
+        margin-bottom: 0.45rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-ink-3);
+      }
+
+      .m5__legend-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.35rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .m5__legend-row:last-child {
+        margin-bottom: 0;
+      }
+
+      .m5__legend-swatch {
+        width: 0.55rem;
+        height: 0.55rem;
+        border-radius: var(--radius-pill);
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 640px) {
+        .m2__layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .m3__readout {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .m3__readout-cell:nth-child(2) {
+          border-right: none;
+        }
+
+        .m3__readout-cell:nth-child(1),
+        .m3__readout-cell:nth-child(2) {
+          border-bottom: 1px dashed var(--bp-dash);
+        }
+
+        .m5__panels {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .m5__frame-wrap {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="catalog">
+      <h1>Blueprint mockups — 5 full pages</h1>
+      <p>
+        Baseline: <strong>V9 Blueprint</strong> (mono title, dashed borders, ruled
+        paper, category chips). Each mockup is a complete page with a real mini
+        grid — course cards use production styles. Pick <strong>M1–M5</strong> and
+        say “apply M#”.
+      </p>
+    </header>
+
+    <div class="mockups">
+      <!-- ═══ M1 Field Sheet ═══ -->
+      <article class="mockup">
+        <span class="mockup__tag">M1 · Field Sheet</span>
+        <span class="mockup__title">Registration corners + ruled canvas</span>
+        <p class="mockup__desc">
+          The direct V9 evolution: a single sheet with corner registration marks,
+          dashed stats box, chip row, and the grid on horizontal ruled paper.
+        </p>
+        <div class="bp-sheet bp-reg m1">
+          <span class="bp-reg__br" aria-hidden="true"></span>
+          <span class="bp-reg__bl" aria-hidden="true"></span>
+          <header class="m1__head">
+            <div>
+              <h2 class="bp-title">Malla Interactiva UDD</h2>
+              <p class="bp-sub">IIT · plan de estudios · rev. 2026</p>
+            </div>
+            <section class="credit-stats bp-credit-stats" aria-hidden="true">
+              <div class="credit-stats__primary">
+                <p class="credit-stats__credits">
+                  <span class="credit-stats__approved">124</span>
+                  <span class="credit-stats__divider">/</span>
+                  <span>561</span>
+                  <span class="credit-stats__unit"> cr</span>
+                </p>
+                <p class="credit-stats__meta">18 ramos · 22% avance</p>
+              </div>
+              <div class="credit-stats__bar">
+                <div class="credit-stats__bar-fill" style="width: 22%"></div>
+                <span class="credit-stats__bar-label">22%</span>
+              </div>
+              <button type="button" class="credit-stats__clear">Limpiar</button>
+            </section>
+          </header>
+          <div class="bp-chips">
+            <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-semester-bg)"></span>IIA 50%</span>
+            <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-trimester-bg)"></span>GIC 12%</span>
+            <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-accent)"></span>EEL 0%</span>
+            <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-rule)"></span>HAB 8%</span>
+          </div>
+          <div class="m1__canvas bp-ruled">
+            <section class="malla-grid" aria-label="Malla IIT">
+              <div class="malla-grid__scroll">
+                <div class="malla-grid__canvas" style="--malla-columns: 5; --malla-rows: 2">
+                  <div class="malla-grid__year-row">
+                    <div class="malla-grid__year-band" style="grid-column: 1 / span 2">Año 1</div>
+                    <div class="malla-grid__year-band" style="grid-column: 3 / span 3">Año 2</div>
+                  </div>
+                  <div class="malla-grid__period-row">
+                    <button type="button" class="malla-grid__period-header malla-grid__period-header--semester malla-grid__period-header--partial"><span class="malla-grid__period-kind">Semestre</span><span class="malla-grid__period-value">1</span></button>
+                    <button type="button" class="malla-grid__period-header malla-grid__period-header--semester"><span class="malla-grid__period-kind">Semestre</span><span class="malla-grid__period-value">2</span></button>
+                    <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester malla-grid__period-header--trimester-start"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">1</span></button>
+                    <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">2</span></button>
+                    <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">3</span></button>
+                  </div>
+                  <div class="malla-grid__courses">
+                    <div class="malla-grid__column">
+                      <button type="button" class="course-card course-card--approved" style="--course-accent: #1a237e; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IIT118W</span><span class="course-card__category">IIA</span></header><p class="course-card__name">Taller de Programación</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">10</span><span class="course-card__credits-label">cr</span></span></footer><span class="course-card__ribbon"></span></button>
+                      <button type="button" class="course-card" style="--course-accent: #78909c; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">CBE101</span><span class="course-card__category">CBE</span></header><p class="course-card__name">Cálculo I</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">6</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                    </div>
+                    <div class="malla-grid__column">
+                      <button type="button" class="course-card" style="--course-accent: #00bcd4; --course-fg: #222"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IID11W</span><span class="course-card__category">GIC</span></header><p class="course-card__name">Desafíos de la Ingeniería</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">8</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      <button type="button" class="course-card course-card--blocked" disabled style="--course-accent: #1565c0; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">HAB301</span><span class="course-card__category">HAB</span></header><p class="course-card__name">Comunicación Profesional</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">4</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                    </div>
+                    <div class="malla-grid__column">
+                      <button type="button" class="course-card" style="--course-accent: #5c6bc0; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">PIE200</span><span class="course-card__category">PIE</span></header><p class="course-card__name">Proyecto con Empresa</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">5</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                    </div>
+                    <div class="malla-grid__column">
+                      <button type="button" class="course-card course-card--beyond" disabled style="--course-accent: #b0bec5; --course-fg: #222"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">EEL400</span><span class="course-card__category">EEL</span></header><p class="course-card__name">Electivo Libre</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">8</span><span class="course-card__credits-label">cr</span></span></footer><span class="course-card__state course-card__state--beyond"><span class="course-card__lock"></span></span></button>
+                    </div>
+                    <div class="malla-grid__column">
+                      <button type="button" class="course-card" style="--course-accent: #1a237e; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IIT220</span><span class="course-card__category">IIA</span></header><p class="course-card__name">Estructuras de Datos</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">10</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <footer class="bp-footer" style="margin-top: 0.65rem">UDD · malla curricular · escala 1:1</footer>
+        </div>
+      </article>
+
+      <!-- ═══ M2 Drafting Board ═══ -->
+      <article class="mockup">
+        <span class="mockup__tag">M2 · Drafting Board</span>
+        <span class="mockup__title">Left spec panel + framed canvas</span>
+        <p class="mockup__desc">
+          Architect’s desk layout: credits and category progress live in a fixed
+          spec column; the grid occupies the main drawing surface.
+        </p>
+        <div class="bp-sheet m2">
+          <div class="m2__layout">
+            <aside class="m2__spec">
+              <div class="m2__spec-block">
+                <span class="m2__spec-label">Proyecto</span>
+                <span class="bp-title" style="font-size: 0.72rem">MALLA-IIT</span>
+                <span class="bp-sub">UDD · 2026</span>
+              </div>
+              <div class="m2__spec-block">
+                <span class="m2__spec-label">Créditos</span>
+                <span class="m2__spec-value">124</span>
+                <div class="m2__spec-row"><span>meta</span><span>561</span></div>
+                <div class="m2__spec-row"><span>avance</span><span>22%</span></div>
+                <div class="m2__spec-bar"><div class="m2__spec-bar-fill"></div></div>
+              </div>
+              <div class="m2__spec-block">
+                <span class="m2__spec-label">Ramos</span>
+                <div class="m2__spec-row"><span>aprobados</span><span>18</span></div>
+                <div class="m2__spec-row"><span>restantes</span><span>53</span></div>
+                <button type="button" class="credit-stats__clear" style="margin-top: 0.45rem; width: 100%; font-size: 0.62rem">Limpiar</button>
+              </div>
+              <div class="m2__spec-block">
+                <span class="m2__spec-label">Categorías</span>
+                <div class="m2__cat-row"><span>IIA</span><span>50%</span></div>
+                <div class="m2__cat-row"><span>GIC</span><span>12%</span></div>
+                <div class="m2__cat-row"><span>EEL</span><span>0%</span></div>
+                <div class="m2__cat-row"><span>HAB</span><span>8%</span></div>
+              </div>
+            </aside>
+            <div class="m2__canvas bp-ruled">
+              <span class="m2__canvas-label">Superficie de trabajo — malla IIT</span>
+              <section class="malla-grid" aria-label="Malla IIT">
+                <div class="malla-grid__scroll">
+                  <div class="malla-grid__canvas" style="--malla-columns: 5; --malla-rows: 2">
+                    <div class="malla-grid__year-row">
+                      <div class="malla-grid__year-band" style="grid-column: 1 / span 2">Año 1</div>
+                      <div class="malla-grid__year-band" style="grid-column: 3 / span 3">Año 2</div>
+                    </div>
+                    <div class="malla-grid__period-row">
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--semester malla-grid__period-header--partial"><span class="malla-grid__period-kind">Semestre</span><span class="malla-grid__period-value">1</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--semester"><span class="malla-grid__period-kind">Semestre</span><span class="malla-grid__period-value">2</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester malla-grid__period-header--trimester-start"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">1</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">2</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">3</span></button>
+                    </div>
+                    <div class="malla-grid__courses">
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card course-card--approved" style="--course-accent: #1a237e; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IIT118W</span><span class="course-card__category">IIA</span></header><p class="course-card__name">Taller de Programación</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">10</span><span class="course-card__credits-label">cr</span></span></footer><span class="course-card__ribbon"></span></button>
+                        <button type="button" class="course-card" style="--course-accent: #78909c; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">CBE101</span><span class="course-card__category">CBE</span></header><p class="course-card__name">Cálculo I</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">6</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card" style="--course-accent: #00bcd4; --course-fg: #222"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IID11W</span><span class="course-card__category">GIC</span></header><p class="course-card__name">Desafíos de la Ingeniería</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">8</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                        <button type="button" class="course-card course-card--blocked" disabled style="--course-accent: #1565c0; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">HAB301</span><span class="course-card__category">HAB</span></header><p class="course-card__name">Comunicación Profesional</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">4</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card" style="--course-accent: #5c6bc0; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">PIE200</span><span class="course-card__category">PIE</span></header><p class="course-card__name">Proyecto con Empresa</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">5</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card course-card--beyond" disabled style="--course-accent: #b0bec5; --course-fg: #222"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">EEL400</span><span class="course-card__category">EEL</span></header><p class="course-card__name">Electivo Libre</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">8</span><span class="course-card__credits-label">cr</span></span></footer><span class="course-card__state course-card__state--beyond"><span class="course-card__lock"></span></span></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card" style="--course-accent: #1a237e; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IIT220</span><span class="course-card__category">IIA</span></header><p class="course-card__name">Estructuras de Datos</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">10</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <footer class="bp-footer" style="margin-top: 0.65rem">API docs: <a href="#">localhost:3001/docs</a></footer>
+        </div>
+      </article>
+
+      <!-- ═══ M3 Plot Roll ═══ -->
+      <article class="mockup">
+        <span class="mockup__tag">M3 · Plot Roll</span>
+        <span class="mockup__title">Banner stamp + segmented readout strip</span>
+        <p class="mockup__desc">
+          Wide-format plot: sheet ID stamp, four-cell metric readout, scrollable
+          grid frame, categories in the bottom margin.
+        </p>
+        <div class="m3">
+          <div class="m3__banner">
+            <div>
+              <h2 class="bp-title">Malla Interactiva UDD</h2>
+              <p class="bp-sub">Ingeniería Civil en Informática — UDD</p>
+            </div>
+            <span class="m3__stamp">HOJA 01 · IIT-2026</span>
+          </div>
+          <div class="m3__readout">
+            <div class="m3__readout-cell"><strong>124</strong>Créditos</div>
+            <div class="m3__readout-cell"><strong>561</strong>Meta total</div>
+            <div class="m3__readout-cell"><strong>22%</strong>Avance</div>
+            <div class="m3__readout-cell"><strong>53</strong>Ramos rest.</div>
+          </div>
+          <div class="m3__body">
+            <div class="m3__scroll-frame">
+              <section class="malla-grid" aria-label="Malla IIT">
+                <div class="malla-grid__scroll">
+                  <div class="malla-grid__canvas" style="--malla-columns: 5; --malla-rows: 2">
+                    <div class="malla-grid__year-row">
+                      <div class="malla-grid__year-band" style="grid-column: 1 / span 2">Año 1</div>
+                      <div class="malla-grid__year-band" style="grid-column: 3 / span 3">Año 2</div>
+                    </div>
+                    <div class="malla-grid__period-row">
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--semester malla-grid__period-header--partial"><span class="malla-grid__period-kind">Semestre</span><span class="malla-grid__period-value">1</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--semester"><span class="malla-grid__period-kind">Semestre</span><span class="malla-grid__period-value">2</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester malla-grid__period-header--trimester-start"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">1</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">2</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">3</span></button>
+                    </div>
+                    <div class="malla-grid__courses">
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card course-card--approved" style="--course-accent: #1a237e; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IIT118W</span><span class="course-card__category">IIA</span></header><p class="course-card__name">Taller de Programación</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">10</span><span class="course-card__credits-label">cr</span></span></footer><span class="course-card__ribbon"></span></button>
+                        <button type="button" class="course-card" style="--course-accent: #78909c; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">CBE101</span><span class="course-card__category">CBE</span></header><p class="course-card__name">Cálculo I</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">6</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card" style="--course-accent: #00bcd4; --course-fg: #222"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IID11W</span><span class="course-card__category">GIC</span></header><p class="course-card__name">Desafíos de la Ingeniería</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">8</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                        <button type="button" class="course-card course-card--blocked" disabled style="--course-accent: #1565c0; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">HAB301</span><span class="course-card__category">HAB</span></header><p class="course-card__name">Comunicación Profesional</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">4</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card" style="--course-accent: #5c6bc0; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">PIE200</span><span class="course-card__category">PIE</span></header><p class="course-card__name">Proyecto con Empresa</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">5</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card course-card--beyond" disabled style="--course-accent: #b0bec5; --course-fg: #222"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">EEL400</span><span class="course-card__category">EEL</span></header><p class="course-card__name">Electivo Libre</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">8</span><span class="course-card__credits-label">cr</span></span></footer><span class="course-card__state course-card__state--beyond"><span class="course-card__lock"></span></span></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card" style="--course-accent: #1a237e; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IIT220</span><span class="course-card__category">IIA</span></header><p class="course-card__name">Estructuras de Datos</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">10</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="m3__margin-cats">
+              <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-semester-bg)"></span>IIA 50%</span>
+              <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-trimester-bg)"></span>GIC 12%</span>
+              <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-accent)"></span>EEL 0%</span>
+              <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-rule)"></span>HAB 8%</span>
+              <button type="button" class="credit-stats__clear" style="margin-left: auto; font-size: 0.62rem">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ M4 Negative Blueprint ═══ -->
+      <article class="mockup">
+        <span class="mockup__tag">M4 · Negative Blueprint</span>
+        <span class="mockup__title">Inverted paper, light vellum grid panel</span>
+        <p class="mockup__desc">
+          Dark blueprint stock for chrome; the grid sits on a light “vellum” inset so
+          course cards keep their production colors and contrast.
+        </p>
+        <div class="m4">
+          <header class="m4__head">
+            <div>
+              <h2 class="bp-title">Malla Interactiva UDD</h2>
+              <p class="bp-sub">IIT · negative print · escala 1:1</p>
+            </div>
+            <section class="credit-stats bp-credit-stats" aria-hidden="true">
+              <div class="credit-stats__primary">
+                <p class="credit-stats__credits">
+                  <span class="credit-stats__approved">124</span>
+                  <span class="credit-stats__divider">/</span>
+                  <span>561</span>
+                  <span class="credit-stats__unit"> cr</span>
+                </p>
+                <p class="credit-stats__meta">18 / 71 ramos</p>
+              </div>
+              <button type="button" class="credit-stats__clear">Limpiar</button>
+            </section>
+          </header>
+          <div class="bp-chips" style="margin-bottom: 0.65rem">
+            <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-semester-bg)"></span>IIA</span>
+            <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-trimester-bg)"></span>GIC</span>
+            <span class="bp-chip"><span class="bp-chip__dot" style="background: var(--color-accent)"></span>EEL</span>
+          </div>
+          <div class="m4__vellum">
+            <p class="m4__vellum-note">Panel vellum — malla sin alterar</p>
+            <section class="malla-grid" aria-label="Malla IIT">
+              <div class="malla-grid__scroll">
+                <div class="malla-grid__canvas" style="--malla-columns: 5; --malla-rows: 2">
+                  <div class="malla-grid__year-row">
+                    <div class="malla-grid__year-band" style="grid-column: 1 / span 2">Año 1</div>
+                    <div class="malla-grid__year-band" style="grid-column: 3 / span 3">Año 2</div>
+                  </div>
+                  <div class="malla-grid__period-row">
+                    <button type="button" class="malla-grid__period-header malla-grid__period-header--semester malla-grid__period-header--partial"><span class="malla-grid__period-kind">Semestre</span><span class="malla-grid__period-value">1</span></button>
+                    <button type="button" class="malla-grid__period-header malla-grid__period-header--semester"><span class="malla-grid__period-kind">Semestre</span><span class="malla-grid__period-value">2</span></button>
+                    <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester malla-grid__period-header--trimester-start"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">1</span></button>
+                    <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">2</span></button>
+                    <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">3</span></button>
+                  </div>
+                  <div class="malla-grid__courses">
+                    <div class="malla-grid__column">
+                      <button type="button" class="course-card course-card--approved" style="--course-accent: #1a237e; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IIT118W</span><span class="course-card__category">IIA</span></header><p class="course-card__name">Taller de Programación</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">10</span><span class="course-card__credits-label">cr</span></span></footer><span class="course-card__ribbon"></span></button>
+                      <button type="button" class="course-card" style="--course-accent: #78909c; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">CBE101</span><span class="course-card__category">CBE</span></header><p class="course-card__name">Cálculo I</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">6</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                    </div>
+                    <div class="malla-grid__column">
+                      <button type="button" class="course-card" style="--course-accent: #00bcd4; --course-fg: #222"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IID11W</span><span class="course-card__category">GIC</span></header><p class="course-card__name">Desafíos de la Ingeniería</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">8</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      <button type="button" class="course-card course-card--blocked" disabled style="--course-accent: #1565c0; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">HAB301</span><span class="course-card__category">HAB</span></header><p class="course-card__name">Comunicación Profesional</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">4</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                    </div>
+                    <div class="malla-grid__column">
+                      <button type="button" class="course-card" style="--course-accent: #5c6bc0; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">PIE200</span><span class="course-card__category">PIE</span></header><p class="course-card__name">Proyecto con Empresa</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">5</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                    </div>
+                    <div class="malla-grid__column">
+                      <button type="button" class="course-card course-card--beyond" disabled style="--course-accent: #b0bec5; --course-fg: #222"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">EEL400</span><span class="course-card__category">EEL</span></header><p class="course-card__name">Electivo Libre</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">8</span><span class="course-card__credits-label">cr</span></span></footer><span class="course-card__state course-card__state--beyond"><span class="course-card__lock"></span></span></button>
+                    </div>
+                    <div class="malla-grid__column">
+                      <button type="button" class="course-card" style="--course-accent: #1a237e; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IIT220</span><span class="course-card__category">IIA</span></header><p class="course-card__name">Estructuras de Datos</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">10</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <footer class="bp-footer" style="margin-top: 0.65rem">Universidad del Desarrollo</footer>
+        </div>
+      </article>
+
+      <!-- ═══ M5 Assembly Grid ═══ -->
+      <article class="mockup">
+        <span class="mockup__tag">M5 · Assembly Grid</span>
+        <span class="mockup__title">Modular header panels + crosshair frame + legend rail</span>
+        <p class="mockup__desc">
+          Decomposed header into three modules; grid in a ruled frame with alignment
+          guides; category legend docked beside the canvas.
+        </p>
+        <div class="bp-sheet m5">
+          <div class="m5__panels">
+            <div class="m5__panel">
+              <h2 class="bp-title">Malla Interactiva UDD</h2>
+              <p class="bp-sub">IIT · Universidad del Desarrollo</p>
+            </div>
+            <div class="m5__panel">
+              <section class="credit-stats bp-credit-stats" aria-hidden="true" style="min-width: 0; width: 100%; padding: 0; border: none; box-shadow: none">
+                <div class="credit-stats__primary">
+                  <p class="credit-stats__credits">
+                    <span class="credit-stats__approved">124</span>
+                    <span class="credit-stats__divider">/</span>
+                    <span>561</span>
+                    <span class="credit-stats__unit"> cr</span>
+                  </p>
+                  <p class="credit-stats__meta">22% · 18/71 ramos</p>
+                </div>
+                <div class="credit-stats__bar" style="max-width: 100%">
+                  <div class="credit-stats__bar-fill" style="width: 22%"></div>
+                  <span class="credit-stats__bar-label">22%</span>
+                </div>
+              </section>
+            </div>
+            <div class="m5__panel m5__panel--actions">
+              <button type="button" class="m5__action">Limpiar</button>
+              <button type="button" class="m5__action">Exportar</button>
+            </div>
+          </div>
+          <div class="m5__frame-wrap">
+            <div class="m5__frame">
+              <span class="m5__crosshair-v" aria-hidden="true"></span>
+              <span class="m5__crosshair-h" aria-hidden="true"></span>
+              <section class="malla-grid" aria-label="Malla IIT">
+                <div class="malla-grid__scroll">
+                  <div class="malla-grid__canvas" style="--malla-columns: 5; --malla-rows: 2">
+                    <div class="malla-grid__year-row">
+                      <div class="malla-grid__year-band" style="grid-column: 1 / span 2">Año 1</div>
+                      <div class="malla-grid__year-band" style="grid-column: 3 / span 3">Año 2</div>
+                    </div>
+                    <div class="malla-grid__period-row">
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--semester malla-grid__period-header--partial"><span class="malla-grid__period-kind">Semestre</span><span class="malla-grid__period-value">1</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--semester"><span class="malla-grid__period-kind">Semestre</span><span class="malla-grid__period-value">2</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester malla-grid__period-header--trimester-start"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">1</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">2</span></button>
+                      <button type="button" class="malla-grid__period-header malla-grid__period-header--trimester"><span class="malla-grid__period-kind">Trimestre</span><span class="malla-grid__period-value">3</span></button>
+                    </div>
+                    <div class="malla-grid__courses">
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card course-card--approved" style="--course-accent: #1a237e; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IIT118W</span><span class="course-card__category">IIA</span></header><p class="course-card__name">Taller de Programación</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">10</span><span class="course-card__credits-label">cr</span></span></footer><span class="course-card__ribbon"></span></button>
+                        <button type="button" class="course-card" style="--course-accent: #78909c; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">CBE101</span><span class="course-card__category">CBE</span></header><p class="course-card__name">Cálculo I</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">6</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card" style="--course-accent: #00bcd4; --course-fg: #222"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IID11W</span><span class="course-card__category">GIC</span></header><p class="course-card__name">Desafíos de la Ingeniería</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">8</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                        <button type="button" class="course-card course-card--blocked" disabled style="--course-accent: #1565c0; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">HAB301</span><span class="course-card__category">HAB</span></header><p class="course-card__name">Comunicación Profesional</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">4</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card" style="--course-accent: #5c6bc0; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">PIE200</span><span class="course-card__category">PIE</span></header><p class="course-card__name">Proyecto con Empresa</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">5</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card course-card--beyond" disabled style="--course-accent: #b0bec5; --course-fg: #222"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">EEL400</span><span class="course-card__category">EEL</span></header><p class="course-card__name">Electivo Libre</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">8</span><span class="course-card__credits-label">cr</span></span></footer><span class="course-card__state course-card__state--beyond"><span class="course-card__lock"></span></span></button>
+                      </div>
+                      <div class="malla-grid__column">
+                        <button type="button" class="course-card" style="--course-accent: #1a237e; --course-fg: #fff"><span class="course-card__stripe"></span><span class="course-card__surface"></span><header class="course-card__head"><span class="course-card__code">IIT220</span><span class="course-card__category">IIA</span></header><p class="course-card__name">Estructuras de Datos</p><footer class="course-card__foot"><span class="course-card__credits"><span class="course-card__credits-value">10</span><span class="course-card__credits-label">cr</span></span></footer></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <aside class="m5__legend">
+              <span class="m5__legend-title">Leyenda</span>
+              <div class="m5__legend-row"><span class="m5__legend-swatch" style="background: var(--color-semester-bg)"></span><span>IIA</span><span>50%</span></div>
+              <div class="m5__legend-row"><span class="m5__legend-swatch" style="background: var(--color-trimester-bg)"></span><span>GIC</span><span>12%</span></div>
+              <div class="m5__legend-row"><span class="m5__legend-swatch" style="background: var(--color-accent)"></span><span>EEL</span><span>0%</span></div>
+              <div class="m5__legend-row"><span class="m5__legend-swatch" style="background: var(--color-rule)"></span><span>HAB</span><span>8%</span></div>
+            </aside>
+          </div>
+          <footer class="bp-footer" style="margin-top: 0.65rem">API docs: <a href="#">localhost:3001/docs</a></footer>
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+coverage/
+*.log
+.data/
+data/malla.db
+data/malla.db-*
+.vercel
+.hallmark/

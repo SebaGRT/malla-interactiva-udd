@@ -1,0 +1,26 @@
+{
+  "IIA": {
+    "color": "#1a237e",
+    "label": "Core de Ingeniería Informática / Informática Avanzada"
+  },
+  "GIC": {
+    "color": "#00bcd4",
+    "label": "Línea de Gestión e Innovación / Certificaciones Tecnológicas"
+  },
+  "CBE": {
+    "color": "#78909c",
+    "label": "Línea de Ciencias Básicas / Electivos Disciplinares"
+  },
+  "PIE": {
+    "color": "#5c6bc0",
+    "label": "Programa Ingeniería con la Empresa"
+  },
+  "HAB": {
+    "color": "#1565c0",
+    "label": "Línea de Habilidades Profesionales"
+  },
+  "EEL": {
+    "color": "#b0bec5",
+    "label": "Créditos Extradisciplinares de Libre Elección"
+  }
+}

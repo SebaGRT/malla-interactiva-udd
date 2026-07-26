@@ -1,0 +1,759 @@
+{
+  "meta": {
+    "university": "Universidad del Desarrollo",
+    "career": "Ingeniería Civil en Informática e Innovación Tecnológica",
+    "code": "IIT",
+    "version": "UDD Futuro",
+    "totalCreditsRequired": 561,
+    "extradisciplinaryCredits": 32,
+    "scheduling": {
+      "semesterPeriodsThrough": 4,
+      "trimesterFromSemester": 5
+    }
+  },
+  "requirements": [
+    {
+      "id": "english-b2",
+      "name": "Programa Complementario de Inglés",
+      "description": "Para egresar, debes aprobar el nivel B2+.",
+      "spansSemesters": [1, 7]
+    },
+    {
+      "id": "licenciatura-exam",
+      "name": "Examen de Licenciatura",
+      "description": "Requiere haber cursado todos los ramos anteriores (IEG420W).",
+      "spansSemesters": [8, 8]
+    }
+  ],
+  "periods": [
+    {
+      "id": "s1",
+      "type": "semester",
+      "semester": 1,
+      "label": "Semestre I",
+      "order": 1,
+      "courses": [
+        {
+          "code": "IIT118W",
+          "name": "Taller de Programación",
+          "credits": 10,
+          "category": "IIA",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "IID11W",
+          "name": "Desafíos de la Ingeniería Informática",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "IIM117W",
+          "name": "Introducción al Cálculo",
+          "credits": 12,
+          "category": "CBE",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "IIM116W",
+          "name": "Álgebra",
+          "credits": 12,
+          "category": "CBE",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "IIDCP11W",
+          "name": "Comunicación Oral / Comunicación Escrita",
+          "credits": 8,
+          "category": "HAB",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "IIC114W",
+          "name": "Introducción a la Vida Universitaria",
+          "credits": 2,
+          "category": "HAB",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "ILD119W",
+          "name": "Créditos Extradisciplinares de Libre Elección",
+          "credits": 8,
+          "category": "EEL",
+          "prerequisites": [],
+          "offering": "A",
+          "spansSemesters": 1
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "type": "semester",
+      "semester": 2,
+      "label": "Semestre II",
+      "order": 2,
+      "courses": [
+        {
+          "code": "IIT128W",
+          "name": "Taller de Obtención y Preparación de Datos",
+          "credits": 10,
+          "category": "IIA",
+          "prerequisites": ["IIT118W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIP122W",
+          "name": "Bootcamp Lenguajes de Programación",
+          "credits": 10,
+          "category": "IIA",
+          "prerequisites": ["IID11W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIM123W",
+          "name": "Cálculo Diferencial",
+          "credits": 12,
+          "category": "CBE",
+          "prerequisites": ["IIM116W", "IIM117W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIM125W",
+          "name": "Geometría",
+          "credits": 10,
+          "category": "CBE",
+          "prerequisites": ["IIM117W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIDCP13W",
+          "name": "Lectura Crítica/Pensamiento Crítico",
+          "credits": 8,
+          "category": "HAB",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "ITH217W",
+          "name": "Taller de Habilidades Para la Autogestión",
+          "credits": 2,
+          "category": "HAB",
+          "prerequisites": ["IIC114W"],
+          "offering": "A"
+        },
+        {
+          "code": "ILD129W",
+          "name": "Créditos Extradisciplinares de Libre Elección",
+          "credits": 8,
+          "category": "EEL",
+          "prerequisites": [],
+          "offering": "A",
+          "spansSemesters": 1
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "type": "semester",
+      "semester": 3,
+      "label": "Semestre III",
+      "order": 3,
+      "courses": [
+        {
+          "code": "IIT213W",
+          "name": "Taller de Estructuras de Datos y Algoritmos",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIT118W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIG217W",
+          "name": "Taller de Diseño de Servicios y Prototipado",
+          "credits": 8,
+          "category": "GIC",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "IIM212W",
+          "name": "Cálculo Integral",
+          "credits": 12,
+          "category": "CBE",
+          "prerequisites": ["IIM123W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIM215W",
+          "name": "Álgebra Lineal",
+          "credits": 12,
+          "category": "CBE",
+          "prerequisites": ["IIM116W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIF214W",
+          "name": "Física",
+          "credits": 12,
+          "category": "CBE",
+          "prerequisites": ["IIM123W"],
+          "offering": "A"
+        },
+        {
+          "code": "ILD219W",
+          "name": "Créditos Extradisciplinares de Libre Elección",
+          "credits": 8,
+          "category": "EEL",
+          "prerequisites": [],
+          "offering": "A",
+          "spansSemesters": 1
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "type": "semester",
+      "semester": 4,
+      "label": "Semestre IV",
+      "order": 4,
+      "courses": [
+        {
+          "code": "IIP226W",
+          "name": "Base de Datos",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIT128W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIP221W",
+          "name": "Taller de Visualización de Datos",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIT128W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIM223W",
+          "name": "Cálculo Multivariable",
+          "credits": 10,
+          "category": "CBE",
+          "prerequisites": ["IIM123W", "IIM125W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIM228W",
+          "name": "Ecuaciones Diferenciales",
+          "credits": 8,
+          "category": "CBE",
+          "prerequisites": ["IIM212W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIM227W",
+          "name": "Probabilidades y Estadística",
+          "credits": 12,
+          "category": "CBE",
+          "prerequisites": ["IIM212W"],
+          "offering": "A"
+        },
+        {
+          "code": "II222W",
+          "name": "Semana i",
+          "credits": 2,
+          "category": "HAB",
+          "prerequisites": ["IIC114W", "IID11W", "IIM116W", "IIM117W", "IIT118W", "IIDCP11W", "IIM123W", "IIM125W", "IIP122W", "IIT128W", "IIDCP13W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIT225W",
+          "name": "Taller de Habilidades Socioemocionales",
+          "credits": 2,
+          "category": "HAB",
+          "prerequisites": ["ITH217W"],
+          "offering": "A"
+        },
+        {
+          "code": "ILD229W",
+          "name": "Créditos Extradisciplinares de Libre Elección",
+          "credits": 8,
+          "category": "EEL",
+          "prerequisites": [],
+          "offering": "A",
+          "spansSemesters": 1
+        }
+      ]
+    },
+    {
+      "id": "t9",
+      "type": "trimester",
+      "semester": 5,
+      "trimesterInSemester": 1,
+      "trimester": 9,
+      "label": "Trimestre 9",
+      "order": 9,
+      "courses": [
+        {
+          "code": "IIP311W",
+          "name": "Ingeniería de Software",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIT213W", "IIP226W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIP316W",
+          "name": "Análisis de Datos e Inferencia Estadística",
+          "credits": 10,
+          "category": "IIA",
+          "prerequisites": ["IIM227W", "IIP221W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIP317W",
+          "name": "Métodos Numéricos",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIM223W", "IIM228W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIG311W",
+          "name": "Taller de Métodos de Innovación Ágiles",
+          "credits": 6,
+          "category": "GIC",
+          "prerequisites": ["IIG217W"],
+          "offering": "A"
+        },
+        {
+          "code": "ICT313W",
+          "name": "Certificación de Fundamentos de la Nube",
+          "credits": 1,
+          "category": "GIC",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "IIT318W",
+          "name": "Taller de Comunicación Efectiva",
+          "credits": 2,
+          "category": "HAB",
+          "prerequisites": ["IIT225W"],
+          "offering": "A"
+        }
+      ]
+    },
+    {
+      "id": "t10",
+      "type": "trimester",
+      "semester": 5,
+      "trimesterInSemester": 2,
+      "trimester": 10,
+      "label": "Trimestre 10",
+      "order": 10,
+      "courses": [
+        {
+          "code": "IIP319W",
+          "name": "Ética en Informática",
+          "credits": 6,
+          "category": "IIA",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "IIP312W",
+          "name": "Advanced Databases Workshop",
+          "credits": 6,
+          "category": "IIA",
+          "prerequisites": ["IIP226W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIP314W",
+          "name": "Optimización Aplicada a Negocios",
+          "credits": 10,
+          "category": "GIC",
+          "prerequisites": ["IIM215W", "IIM223W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIG313W",
+          "name": "Taller de Experiencia del Usuario UX/UI",
+          "credits": 6,
+          "category": "GIC",
+          "prerequisites": ["IIG311W", "IIP221W"],
+          "offering": "A"
+        },
+        {
+          "code": "ICT315W",
+          "name": "Software Development Certification I",
+          "credits": 1,
+          "category": "GIC",
+          "prerequisites": ["ICT313W"],
+          "offering": "A"
+        },
+        {
+          "code": "IPP319W",
+          "name": "Desafio Empresa I",
+          "credits": 7,
+          "category": "PIE",
+          "prerequisites": ["IIP311W"],
+          "offering": "A"
+        }
+      ]
+    },
+    {
+      "id": "t11",
+      "type": "trimester",
+      "semester": 6,
+      "trimesterInSemester": 1,
+      "trimester": 11,
+      "label": "Trimestre 11",
+      "order": 11,
+      "courses": [
+        {
+          "code": "IIP322W",
+          "name": "Arquitectura de Sistemas",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIP311W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIP323W",
+          "name": "Tecnologías y Aplicaciones Web y Móviles",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIP221W", "IIP122W", "IIG311W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIP325W",
+          "name": "Redes de Computadores",
+          "credits": 6,
+          "category": "IIA",
+          "prerequisites": ["IIP311W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIG324W",
+          "name": "Business Intelligence",
+          "credits": 8,
+          "category": "GIC",
+          "prerequisites": ["IIP316W"],
+          "offering": "A"
+        },
+        {
+          "code": "ICT321W",
+          "name": "Software Development Certification II",
+          "credits": 1,
+          "category": "GIC",
+          "prerequisites": ["ICT315W"],
+          "offering": "A"
+        },
+        {
+          "code": "IPP329W",
+          "name": "Desafio Empresa II",
+          "credits": 7,
+          "category": "PIE",
+          "prerequisites": ["IPP319W"],
+          "offering": "A"
+        }
+      ]
+    },
+    {
+      "id": "t13",
+      "type": "trimester",
+      "semester": 7,
+      "trimesterInSemester": 1,
+      "trimester": 13,
+      "label": "Trimestre 13",
+      "order": 13,
+      "courses": [
+        {
+          "code": "IIP411W",
+          "name": "Taller de Ciencia de Redes",
+          "credits": 6,
+          "category": "IIA",
+          "prerequisites": ["IIP226W", "IIP325W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIP412W",
+          "name": "Computación Paralela y Distribuida",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIP322W", "IIP325W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIT414W",
+          "name": "Artificial Intelligence Workshop",
+          "credits": 10,
+          "category": "IIA",
+          "prerequisites": ["IIG324W", "IIP316W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIG413W",
+          "name": "Formulación y Evaluación de Proyectos",
+          "credits": 10,
+          "category": "GIC",
+          "prerequisites": ["IIP314W", "IIP322W"],
+          "offering": "A"
+        },
+        {
+          "code": "ICT418W",
+          "name": "Big Data Certification",
+          "credits": 1,
+          "category": "GIC",
+          "prerequisites": [],
+          "offering": "A"
+        }
+      ]
+    },
+    {
+      "id": "t14",
+      "type": "trimester",
+      "semester": 7,
+      "trimesterInSemester": 2,
+      "trimester": 14,
+      "label": "Trimestre 14",
+      "order": 14,
+      "courses": [
+        {
+          "code": "IPP419",
+          "name": "Trabajo en Empresa I",
+          "credits": 21,
+          "category": "PIE",
+          "prerequisites": ["IPP329W"],
+          "offering": "A"
+        }
+      ]
+    },
+    {
+      "id": "t15",
+      "type": "trimester",
+      "semester": 8,
+      "trimesterInSemester": 1,
+      "trimester": 15,
+      "label": "Trimestre 15",
+      "order": 15,
+      "courses": [
+        {
+          "code": "IIT421W",
+          "name": "Seguridad y Protección de Datos",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIP319W", "IIP411W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIT423W",
+          "name": "Tecnologías Emergentes",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIT414W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIG422W",
+          "name": "Deep Learning Workshop",
+          "credits": 10,
+          "category": "IIA",
+          "prerequisites": ["IIT414W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIG424W",
+          "name": "Innovación y Emprendimiento Tecnológico",
+          "credits": 6,
+          "category": "GIC",
+          "prerequisites": ["IIG413W"],
+          "offering": "A"
+        },
+        {
+          "code": "ICT425W",
+          "name": "Advanced Certification I",
+          "credits": 1,
+          "category": "GIC",
+          "prerequisites": ["ICT321W", "ICT418W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIT427W",
+          "name": "Taller de Liderazgo",
+          "credits": 2,
+          "category": "HAB",
+          "prerequisites": ["IIT318W"],
+          "offering": "A"
+        },
+        {
+          "code": "IEG420W",
+          "name": "Examen de Licenciatura",
+          "credits": 0,
+          "category": "CBE",
+          "prerequisites": [],
+          "offering": "A"
+        }
+      ]
+    },
+    {
+      "id": "t16",
+      "type": "trimester",
+      "semester": 8,
+      "trimesterInSemester": 2,
+      "trimester": 16,
+      "label": "Trimestre 16",
+      "order": 16,
+      "courses": [
+        {
+          "code": "IPP428W",
+          "name": "Trabajo en Empresa II",
+          "credits": 21,
+          "category": "PIE",
+          "prerequisites": [],
+          "offering": "A"
+        }
+      ]
+    },
+    {
+      "id": "t17",
+      "type": "trimester",
+      "semester": 9,
+      "trimesterInSemester": 1,
+      "trimester": 17,
+      "label": "Trimestre 17",
+      "order": 17,
+      "courses": [
+        {
+          "code": "IIT511W",
+          "name": "Big Data Engineering",
+          "credits": 8,
+          "category": "IIA",
+          "prerequisites": ["IIP312W", "IIP322W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIG512W",
+          "name": "Gestión de Proyectos Informáticos",
+          "credits": 8,
+          "category": "GIC",
+          "prerequisites": ["IIG311W", "IIG413W"],
+          "offering": "A"
+        },
+        {
+          "code": "ICT515W",
+          "name": "Advanced Certification II",
+          "credits": 1,
+          "category": "GIC",
+          "prerequisites": ["ICT425W"],
+          "offering": "A"
+        },
+        {
+          "code": "IEL513W",
+          "name": "Electivo I",
+          "credits": 7,
+          "category": "CBE",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "IEL514W",
+          "name": "Electivo II",
+          "credits": 7,
+          "category": "CBE",
+          "prerequisites": [],
+          "offering": "A"
+        },
+        {
+          "code": "IIT517W",
+          "name": "Taller de Empleabilidad",
+          "credits": 2,
+          "category": "HAB",
+          "prerequisites": ["IIT427W"],
+          "offering": "A"
+        }
+      ]
+    },
+    {
+      "id": "t18",
+      "type": "trimester",
+      "semester": 9,
+      "trimesterInSemester": 2,
+      "trimester": 18,
+      "label": "Trimestre 18",
+      "order": 18,
+      "courses": [
+        {
+          "code": "IPP516W",
+          "name": "Trabajo en Empresa III",
+          "credits": 21,
+          "category": "PIE",
+          "prerequisites": ["IPP428W"],
+          "offering": "A"
+        }
+      ]
+    },
+    {
+      "id": "t19",
+      "type": "trimester",
+      "semester": 10,
+      "trimesterInSemester": 1,
+      "trimester": 19,
+      "label": "Trimestre 19",
+      "order": 19,
+      "courses": [
+        {
+          "code": "IPT522W",
+          "name": "Proyecto de Titulación",
+          "credits": 14,
+          "category": "IIA",
+          "prerequisites": ["IIG512W", "IPP516W"],
+          "offering": "A"
+        },
+        {
+          "code": "IIG521W",
+          "name": "Digital Transformation Workshop",
+          "credits": 6,
+          "category": "GIC",
+          "prerequisites": ["IIT511W", "IIG512W", "ICT418W"],
+          "offering": "A"
+        },
+        {
+          "code": "IEL524W",
+          "name": "Electivo III",
+          "credits": 7,
+          "category": "CBE",
+          "prerequisites": [],
+          "offering": "A"
+        }
+      ]
+    },
+    {
+      "id": "t20",
+      "type": "trimester",
+      "semester": 10,
+      "trimesterInSemester": 2,
+      "trimester": 20,
+      "label": "Trimestre 20",
+      "order": 20,
+      "courses": [
+        {
+          "code": "IPP526W",
+          "name": "Trabajo en Empresa IV",
+          "credits": 21,
+          "category": "PIE",
+          "prerequisites": ["IPP516W"],
+          "offering": "A"
+        }
+      ]
+    }
+  ]
+}

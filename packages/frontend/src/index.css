@@ -1,0 +1,45 @@
+@import "./styles/tokens.css";
+
+:root {
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  max-width: min(100%, 1500px);
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2rem;
+}
+
+.error {
+  padding: 0.65rem 0.85rem;
+  border-radius: 0;
+  border: 2px solid color-mix(in oklch, var(--color-danger) 35%, var(--color-rule));
+  background: color-mix(in oklch, var(--color-danger) 8%, var(--color-paper-2));
+  color: var(--color-danger);
+  font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spec-sidebar__clear,
+  .spec-sidebar__theme {
+    transition: none;
+  }
+}

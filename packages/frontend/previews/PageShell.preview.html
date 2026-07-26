@@ -1,0 +1,1334 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page shell — 15 restyles</title>
+    <link rel="stylesheet" href="../src/styles/tokens.css" />
+    <link rel="stylesheet" href="../src/styles/credit-stats.css" />
+    <link rel="stylesheet" href="../src/styles/malla-grid.css" />
+    <style>
+      /* Hallmark · pre-emit critique: P4 H5 E5 S5 R4 V5 */
+      /* Hallmark · preview: page-shell explorations · grid unchanged */
+
+      :root {
+        --preview-stage-bg: color-mix(in oklch, var(--color-ink) 92%, var(--color-accent));
+        --preview-stage-ink: color-mix(in oklch, var(--color-paper-2) 78%, var(--color-ink-3));
+        --preview-stage-edge: color-mix(in oklch, var(--color-paper-2) 8%, transparent);
+        --preview-hud-bg: color-mix(in oklch, var(--color-ink) 96%, var(--color-success));
+        --preview-hud-ink: color-mix(in oklch, var(--color-paper-2) 88%, var(--color-success-soft));
+        --preview-hud-panel: color-mix(in oklch, var(--color-ink) 65%, transparent);
+        --preview-hud-muted: color-mix(in oklch, var(--color-ink-3) 70%, var(--color-success));
+        --preview-hud-edge: color-mix(in oklch, var(--color-paper-2) 12%, transparent);
+        --preview-inset-shadow: color-mix(in oklch, var(--color-ink) 4%, transparent);
+      }
+
+      html,
+      body {
+        overflow-x: clip;
+      }
+
+      body {
+        margin: 0;
+        padding: 1.5rem 1rem 3rem;
+        font-family: "IBM Plex Sans", system-ui, sans-serif;
+        background: var(--color-paper);
+        color: var(--color-ink);
+      }
+
+      .preview-intro {
+        max-width: 44rem;
+        margin: 0 auto 2rem;
+      }
+
+      .preview-intro h1 {
+        margin: 0 0 0.5rem;
+        font-size: 1.35rem;
+        font-weight: 800;
+        font-style: normal;
+      }
+
+      .preview-intro p {
+        margin: 0;
+        font-size: 0.88rem;
+        color: var(--color-ink-2);
+        line-height: 1.45;
+      }
+
+      .preview-divider {
+        max-width: 920px;
+        margin: 2.5rem auto 1.75rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--color-rule);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-ink-3);
+      }
+
+      .preview-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        max-width: 920px;
+        margin: 0 auto;
+        min-width: 0;
+      }
+
+      .preview-block {
+        position: relative;
+        min-width: 0;
+      }
+
+      .preview-block__label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+      }
+
+      .preview-block__name {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+        font-weight: 700;
+        font-style: normal;
+        color: var(--color-ink);
+      }
+
+      .preview-block__note {
+        margin: 0.65rem 0 0;
+        font-size: 0.75rem;
+        color: var(--color-ink-3);
+        line-height: 1.4;
+      }
+
+      .shell {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 1.25rem;
+        border: 1px dashed var(--color-rule);
+        border-radius: var(--radius-lg);
+        background: color-mix(in oklch, var(--color-paper-2) 90%, var(--color-paper));
+        min-width: 0;
+      }
+
+      .shell h2 {
+        margin: 0 0 0.35rem;
+        font-size: 1.65rem;
+        font-weight: 800;
+        font-style: normal;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+        min-width: 0;
+      }
+
+      .shell .subtitle {
+        margin: 0;
+        font-size: 0.88rem;
+        color: var(--color-ink-2);
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+        min-width: 0;
+      }
+
+      .shell__header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .shell__title-block {
+        flex: 1;
+        min-width: min(100%, 12rem);
+      }
+
+      .shell__grid-mock {
+        min-height: 7rem;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--color-rule);
+        border-radius: var(--radius-md);
+        background: var(--color-paper-2);
+        color: var(--color-ink-3);
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-align: center;
+        padding: 1rem;
+        min-width: 0;
+      }
+
+      .shell__footer {
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--color-rule);
+        font-size: 0.78rem;
+        color: var(--color-ink-3);
+      }
+
+      .shell__footer a {
+        color: var(--color-accent);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .shell__cat-mock {
+        align-self: flex-end;
+        font-size: 0.72rem;
+        padding: 0.35rem 0.75rem;
+        border: 1px solid var(--color-rule);
+        border-radius: var(--radius-pill);
+        background: var(--color-paper-2);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .mock-stat-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.28rem 0.55rem;
+        border-radius: var(--radius-pill);
+        background: var(--color-accent-soft);
+        border: 1px solid color-mix(in oklch, var(--color-accent) 25%, transparent);
+        font-size: 0.68rem;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        color: var(--color-accent);
+        white-space: nowrap;
+      }
+
+      .mock-cat-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .mock-cat-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.2rem 0.45rem;
+        border-radius: var(--radius-pill);
+        border: 1px solid var(--color-rule);
+        background: var(--color-paper-2);
+        font-size: 0.62rem;
+        font-weight: 800;
+        font-family: var(--font-mono);
+        white-space: nowrap;
+      }
+
+      .mock-cat-chip__dot {
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: var(--radius-pill);
+        flex-shrink: 0;
+      }
+
+      /* V1–V5 (unchanged) */
+      .shell--v2 {
+        gap: 1rem;
+        padding: 0;
+        border: none;
+        background: transparent;
+      }
+
+      .shell--v2 .shell__toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem 1rem;
+        padding: 0.65rem 1rem;
+        background: var(--color-paper-2);
+        border: 1px solid var(--color-rule);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .shell--v2 .shell__title-block h2 {
+        font-size: 1.15rem;
+        margin-bottom: 0.15rem;
+      }
+
+      .shell--v2 .shell__title-block .subtitle {
+        font-size: 0.76rem;
+      }
+
+      .shell--v2 .credit-stats {
+        min-width: min(100%, 18rem);
+        padding: 0.5rem 0.65rem 0.5rem calc(var(--stripe-w) + 0.65rem);
+        gap: 0.5rem 0.75rem;
+      }
+
+      .shell--v2 .credit-stats__approved {
+        font-size: 1.15rem;
+      }
+
+      .shell--v3 {
+        gap: 0.75rem;
+        padding: 0;
+        border: none;
+        background: transparent;
+      }
+
+      .shell--v3 .shell__card {
+        padding: 1rem 1.1rem;
+        background: var(--color-paper-2);
+        border: 1px solid var(--color-rule);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .shell--v3 .shell__header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .shell--v3 .credit-stats {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .shell--v3 .shell__grid-mock {
+        box-shadow: var(--shadow-md);
+        min-height: 8rem;
+      }
+
+      .shell--v3 .shell__footer {
+        border-top: none;
+        padding-top: 0;
+        text-align: center;
+      }
+
+      .shell--v4 {
+        padding: 0;
+        background: transparent;
+        overflow: hidden;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-rule);
+      }
+
+      .shell--v4 .shell__band {
+        padding: 1.1rem 1.25rem 1rem;
+        background: linear-gradient(
+          90deg,
+          color-mix(in oklch, var(--color-accent) 12%, var(--color-paper-2)),
+          var(--color-paper-2) 70%
+        );
+        border-bottom: 1px solid var(--color-rule);
+      }
+
+      .shell--v4 .shell__body {
+        padding: 1rem 1.25rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .shell--v4 h2 {
+        font-size: 1.5rem;
+      }
+
+      .shell--v4 .credit-stats {
+        background: var(--color-paper);
+      }
+
+      .shell--v5 {
+        gap: 1.5rem;
+        padding: 0.25rem 0;
+        border: none;
+        background: transparent;
+        position: relative;
+        padding-bottom: 2.5rem;
+      }
+
+      .shell--v5 .shell__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .shell--v5 .credit-stats {
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        padding: 0;
+        min-width: 0;
+        width: 100%;
+      }
+
+      .shell--v5 .credit-stats::before {
+        display: none;
+      }
+
+      .shell--v5 .credit-stats__bar {
+        max-width: 100%;
+      }
+
+      .shell--v5 .shell__grid-mock {
+        border: none;
+        background: color-mix(in oklch, var(--color-rule) 35%, transparent);
+      }
+
+      .shell--v5 .shell__footer {
+        border-top: none;
+        padding-top: 0;
+        opacity: 0.85;
+      }
+
+      .shell--v5 .shell__cat-mock {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+
+      /* V6 Observatory — dark stage, stat pills */
+      .shell--v6 {
+        padding: 0;
+        border: none;
+        background: transparent;
+        gap: 0.75rem;
+      }
+
+      .shell--v6 .shell__top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+
+      .shell--v6 .shell__pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .shell--v6 .shell__grid-mock {
+        min-height: 8.5rem;
+        border: none;
+        border-radius: var(--radius-lg);
+        background: var(--preview-stage-bg);
+        color: var(--preview-stage-ink);
+        box-shadow: inset 0 0 0 1px var(--preview-stage-edge);
+      }
+
+      /* V7 Split rail — stats column left */
+      .shell--v7 {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.75rem;
+        padding: 0;
+        border: none;
+        background: transparent;
+      }
+
+      .shell--v7 .shell__layout {
+        display: grid;
+        grid-template-columns: minmax(7.5rem, 9.5rem) minmax(0, 1fr);
+        gap: 0.75rem;
+        align-items: start;
+        min-width: 0;
+      }
+
+      .shell--v7 .shell__rail {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.65rem;
+        background: var(--color-paper-2);
+        border: 1px solid var(--color-rule);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .shell--v7 .shell__rail-label {
+        font-size: 0.58rem;
+        font-weight: 800;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--color-ink-3);
+      }
+
+      .shell--v7 .shell__rail-value {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--color-accent);
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+
+      .shell--v7 .shell__rail-bar {
+        height: 0.35rem;
+        border-radius: var(--radius-pill);
+        background: var(--color-rule);
+        overflow: hidden;
+      }
+
+      .shell--v7 .shell__rail-bar-fill {
+        height: 100%;
+        width: 22%;
+        background: var(--color-accent);
+        border-radius: inherit;
+      }
+
+      .shell--v7 .shell__main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        min-width: 0;
+      }
+
+      .shell--v7 h2 {
+        font-size: 1.25rem;
+      }
+
+      /* V8 Ticker — stats as horizontal strip */
+      .shell--v8 {
+        padding: 0;
+        border: none;
+        background: transparent;
+        gap: 0.65rem;
+      }
+
+      .shell--v8 .shell__mast {
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--color-ink);
+      }
+
+      .shell--v8 h2 {
+        font-size: 1.85rem;
+        letter-spacing: -0.04em;
+      }
+
+      .shell--v8 .shell__ticker {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        border: 1px solid var(--color-rule);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        background: var(--color-paper-2);
+      }
+
+      .shell--v8 .shell__tick {
+        flex: 1 1 5rem;
+        min-width: min(100%, 5rem);
+        padding: 0.45rem 0.65rem;
+        border-right: 1px solid var(--color-rule);
+        font-size: 0.68rem;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .shell--v8 .shell__tick:last-child {
+        border-right: none;
+      }
+
+      .shell--v8 .shell__tick strong {
+        display: block;
+        font-size: 0.95rem;
+        color: var(--color-accent);
+        margin-bottom: 0.1rem;
+      }
+
+      /* V9 Blueprint — ruled paper grid stage */
+      .shell--v9 {
+        padding: 1rem;
+        border: 1px solid color-mix(in oklch, var(--color-accent) 35%, var(--color-rule));
+        background: var(--color-paper-2);
+        gap: 0.85rem;
+      }
+
+      .shell--v9 .shell__header {
+        align-items: flex-start;
+      }
+
+      .shell--v9 h2 {
+        font-family: var(--font-mono);
+        font-size: 1.15rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .shell--v9 .credit-stats {
+        border-style: dashed;
+        background: transparent;
+      }
+
+      .shell--v9 .shell__grid-mock {
+        min-height: 8rem;
+        border: 1px dashed color-mix(in oklch, var(--color-accent) 40%, var(--color-rule));
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 11px,
+          color-mix(in oklch, var(--color-rule) 55%, transparent) 11px,
+          color-mix(in oklch, var(--color-rule) 55%, transparent) 12px
+        );
+        border-radius: 0;
+      }
+
+      /* V10 Mosaic — stat tiles row */
+      .shell--v10 {
+        padding: 0;
+        border: none;
+        background: transparent;
+        gap: 0.75rem;
+      }
+
+      .shell--v10 .shell__tiles {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.45rem;
+      }
+
+      .shell--v10 .shell__tile {
+        padding: 0.55rem 0.5rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--color-rule);
+        background: var(--color-paper-2);
+        text-align: center;
+        min-width: 0;
+      }
+
+      .shell--v10 .shell__tile-value {
+        display: block;
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--color-accent);
+        font-variant-numeric: tabular-nums;
+        line-height: 1.1;
+      }
+
+      .shell--v10 .shell__tile-label {
+        display: block;
+        margin-top: 0.15rem;
+        font-size: 0.58rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-ink-3);
+      }
+
+      .shell--v10 .shell__title-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+
+      .shell--v10 h2 {
+        font-size: 1.2rem;
+      }
+
+      /* V11 Magazine — wide title, stats below in columns */
+      .shell--v11 {
+        padding: 0;
+        border: none;
+        background: transparent;
+        gap: 1rem;
+      }
+
+      .shell--v11 h2 {
+        font-size: clamp(1.5rem, 4vw, 2.1rem);
+        letter-spacing: -0.03em;
+        max-width: 14ch;
+      }
+
+      .shell--v11 .shell__rule {
+        height: 3px;
+        width: 3.5rem;
+        background: var(--color-accent);
+        margin: 0.5rem 0 0.75rem;
+      }
+
+      .shell--v11 .shell__stats-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-top: 1px solid var(--color-rule);
+        border-bottom: 1px solid var(--color-rule);
+      }
+
+      .shell--v11 .shell__stat-block strong {
+        display: block;
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: var(--color-accent);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .shell--v11 .shell__stat-block span {
+        font-size: 0.72rem;
+        color: var(--color-ink-3);
+      }
+
+      /* V12 Ledger — L-frame around grid */
+      .shell--v12 {
+        padding: 0;
+        border: none;
+        background: transparent;
+        gap: 0.65rem;
+      }
+
+      .shell--v12 .shell__frame {
+        display: grid;
+        grid-template-columns: minmax(5.5rem, 6.5rem) minmax(0, 1fr);
+        grid-template-rows: auto minmax(7rem, 1fr);
+        gap: 0;
+        border: 2px solid var(--color-ink);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        min-width: 0;
+      }
+
+      .shell--v12 .shell__frame-title {
+        grid-column: 1 / -1;
+        padding: 0.55rem 0.75rem;
+        background: var(--color-ink);
+        color: var(--color-paper-2);
+      }
+
+      .shell--v12 .shell__frame-title h2 {
+        font-size: 0.95rem;
+        margin: 0;
+        color: inherit;
+      }
+
+      .shell--v12 .shell__frame-stats {
+        padding: 0.55rem;
+        border-right: 2px solid var(--color-ink);
+        background: var(--color-paper-2);
+        font-size: 0.65rem;
+        font-weight: 700;
+        line-height: 1.45;
+      }
+
+      .shell--v12 .shell__frame-stats em {
+        display: block;
+        font-style: normal;
+        font-size: 1.05rem;
+        color: var(--color-accent);
+        margin-bottom: 0.25rem;
+      }
+
+      .shell--v12 .shell__grid-mock {
+        border: none;
+        border-radius: 0;
+        min-height: 0;
+      }
+
+      /* V13 Tabs — categories integrated above grid */
+      .shell--v13 {
+        padding: 0;
+        border: none;
+        background: transparent;
+        gap: 0.65rem;
+      }
+
+      .shell--v13 .shell__header-compact {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+
+      .shell--v13 h2 {
+        font-size: 1.1rem;
+      }
+
+      .shell--v13 .shell__tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        padding: 0.35rem;
+        background: var(--color-paper-2);
+        border: 1px solid var(--color-rule);
+        border-radius: var(--radius-md);
+      }
+
+      .shell--v13 .shell__tab {
+        padding: 0.3rem 0.55rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid transparent;
+        background: transparent;
+        font-size: 0.65rem;
+        font-weight: 800;
+        font-family: var(--font-mono);
+        color: var(--color-ink-2);
+        white-space: nowrap;
+      }
+
+      .shell--v13 .shell__tab--active {
+        background: var(--color-accent-soft);
+        border-color: color-mix(in oklch, var(--color-accent) 30%, transparent);
+        color: var(--color-accent);
+      }
+
+      .shell--v13 .shell__inline-stats {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--color-ink-2);
+        white-space: nowrap;
+      }
+
+      .shell--v13 .shell__inline-stats strong {
+        color: var(--color-accent);
+      }
+
+      /* V14 Desk — frosted solid panel (no backdrop-filter) */
+      .shell--v14 {
+        padding: 1rem;
+        border: none;
+        border-radius: var(--radius-lg);
+        background: color-mix(in oklch, var(--color-paper-2) 88%, var(--color-accent));
+        box-shadow: var(--shadow-md);
+        gap: 0.85rem;
+      }
+
+      .shell--v14 .shell__header {
+        padding-bottom: 0.65rem;
+        border-bottom: 1px solid color-mix(in oklch, var(--color-accent) 15%, var(--color-rule));
+      }
+
+      .shell--v14 .credit-stats {
+        background: color-mix(in oklch, var(--color-paper-2) 75%, transparent);
+        border-color: color-mix(in oklch, var(--color-accent) 20%, var(--color-rule));
+      }
+
+      .shell--v14 .shell__grid-mock {
+        border: none;
+        background: var(--color-paper-2);
+        box-shadow: inset 0 2px 8px var(--preview-inset-shadow);
+        min-height: 8rem;
+      }
+
+      /* V15 HUD — terminal readout */
+      .shell--v15 {
+        padding: 0.75rem;
+        border: 1px solid color-mix(in oklch, var(--color-success) 45%, var(--color-rule));
+        background: var(--preview-hud-bg);
+        gap: 0.65rem;
+        color: var(--preview-hud-ink);
+      }
+
+      .shell--v15 h2,
+      .shell--v15 .subtitle,
+      .shell--v15 .shell__footer {
+        color: var(--preview-hud-ink);
+      }
+
+      .shell--v15 h2 {
+        font-family: var(--font-mono);
+        font-size: 1rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .shell--v15 .subtitle {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        opacity: 0.75;
+      }
+
+      .shell--v15 .shell__hud-line {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        padding: 0.35rem 0.5rem;
+        background: var(--preview-hud-panel);
+        border-left: 2px solid var(--color-success);
+      }
+
+      .shell--v15 .shell__hud-line strong {
+        color: var(--color-success-soft);
+        font-weight: 700;
+      }
+
+      .shell--v15 .shell__grid-mock {
+        border: 1px solid var(--preview-hud-edge);
+        background: var(--preview-hud-panel);
+        color: var(--preview-hud-muted);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+      }
+
+      .shell--v15 .shell__footer {
+        border-top-color: var(--preview-hud-edge);
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+      }
+
+      .shell--v15 .shell__cat-mock {
+        background: var(--preview-hud-panel);
+        border-color: var(--preview-hud-edge);
+        color: var(--preview-hud-ink);
+      }
+
+      @media (max-width: 640px) {
+        .shell--v2 .shell__toolbar {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .shell--v2 .credit-stats {
+          width: 100%;
+        }
+
+        .shell--v7 .shell__layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .shell--v10 .shell__tiles {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .shell--v11 .shell__stats-row {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .shell--v12 .shell__frame {
+          grid-template-columns: minmax(0, 1fr);
+          grid-template-rows: auto auto auto;
+        }
+
+        .shell--v12 .shell__frame-stats {
+          border-right: none;
+          border-bottom: 2px solid var(--color-ink);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preview-intro">
+      <h1>Page shell — 15 restyles</h1>
+      <p>
+        Grid and course cards stay unchanged. <strong>V1</strong> is the current
+        production baseline. <strong>V6–V15</strong> are creative explorations — pick
+        a number and say “apply V#”.
+      </p>
+    </div>
+
+    <div class="preview-list">
+      <!-- V1 Classic -->
+      <section class="preview-block">
+        <span class="preview-block__label">V1</span>
+        <span class="preview-block__name">Classic — title left, stats right, floating Cat.</span>
+        <div class="shell shell--v1">
+          <header class="shell__header">
+            <div class="shell__title-block">
+              <h2>Malla Interactiva UDD</h2>
+              <p class="subtitle">IIT — Universidad del Desarrollo</p>
+            </div>
+            <section class="credit-stats" aria-hidden="true">
+              <div class="credit-stats__primary">
+                <p class="credit-stats__credits">
+                  <span class="credit-stats__approved">124</span>
+                  <span class="credit-stats__divider">/</span>
+                  <span>561</span>
+                  <span class="credit-stats__unit"> créditos</span>
+                </p>
+                <p class="credit-stats__meta">18 ramos aprobados · faltan 53 ramos</p>
+              </div>
+              <div class="credit-stats__bar">
+                <div class="credit-stats__bar-fill" style="width: 22%"></div>
+                <span class="credit-stats__bar-label">22%</span>
+              </div>
+              <button type="button" class="credit-stats__clear" disabled>Limpiar</button>
+            </section>
+          </header>
+          <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">API docs: <a href="#">localhost:3001/docs</a></footer>
+        </div>
+        <p class="preview-block__note">Baseline en producción.</p>
+      </section>
+
+      <!-- V2–V5 abbreviated labels only — same markup as before -->
+      <section class="preview-block">
+        <span class="preview-block__label">V2</span>
+        <span class="preview-block__name">Toolbar — barra única compacta</span>
+        <div class="shell shell--v2">
+          <div class="shell__toolbar">
+            <div class="shell__title-block">
+              <h2>Malla Interactiva UDD</h2>
+              <p class="subtitle">IIT — UDD</p>
+            </div>
+            <section class="credit-stats" aria-hidden="true">
+              <div class="credit-stats__primary">
+                <p class="credit-stats__credits">
+                  <span class="credit-stats__approved">124</span><span class="credit-stats__divider">/</span><span>561</span>
+                  <span class="credit-stats__unit"> cr</span>
+                </p>
+                <p class="credit-stats__meta">18 / 71 ramos</p>
+              </div>
+              <div class="credit-stats__bar">
+                <div class="credit-stats__bar-fill" style="width: 22%"></div>
+                <span class="credit-stats__bar-label">22%</span>
+              </div>
+              <button type="button" class="credit-stats__clear">Limpiar</button>
+            </section>
+          </div>
+          <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">API docs: <a href="#">localhost:3001/docs</a></footer>
+        </div>
+      </section>
+
+      <section class="preview-block">
+        <span class="preview-block__label">V3</span>
+        <span class="preview-block__name">Stacked — tarjetas separadas</span>
+        <div class="shell shell--v3">
+          <div class="shell__card shell__header">
+            <div class="shell__title-block">
+              <h2>Malla Interactiva UDD</h2>
+              <p class="subtitle">IIT — UDD</p>
+            </div>
+          </div>
+          <div class="shell__card">
+            <section class="credit-stats" aria-hidden="true">
+              <div class="credit-stats__primary">
+                <p class="credit-stats__credits">
+                  <span class="credit-stats__approved">124</span><span class="credit-stats__divider">/</span><span>561</span>
+                  <span class="credit-stats__unit"> cr</span>
+                </p>
+                <p class="credit-stats__meta">18 aprobados · 53 restantes</p>
+              </div>
+              <div class="credit-stats__bar">
+                <div class="credit-stats__bar-fill" style="width: 22%"></div>
+                <span class="credit-stats__bar-label">22%</span>
+              </div>
+              <button type="button" class="credit-stats__clear">Limpiar</button>
+            </section>
+          </div>
+          <div class="shell__card shell__grid-mock">Malla grid (sin cambios)</div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">Malla Interactiva UDD</footer>
+        </div>
+      </section>
+
+      <section class="preview-block">
+        <span class="preview-block__label">V4</span>
+        <span class="preview-block__name">Accent band — franja de color en header</span>
+        <div class="shell shell--v4">
+          <div class="shell__band">
+            <div class="shell__title-block">
+              <h2>Malla Interactiva UDD</h2>
+              <p class="subtitle">IIT — UDD</p>
+            </div>
+          </div>
+          <div class="shell__body">
+            <section class="credit-stats" aria-hidden="true">
+              <div class="credit-stats__primary">
+                <p class="credit-stats__credits">
+                  <span class="credit-stats__approved">124</span><span class="credit-stats__divider">/</span><span>561</span>
+                  <span class="credit-stats__unit"> cr</span>
+                </p>
+                <p class="credit-stats__meta">18 / 71 ramos</p>
+              </div>
+              <div class="credit-stats__bar">
+                <div class="credit-stats__bar-fill" style="width: 22%"></div>
+                <span class="credit-stats__bar-label">22%</span>
+              </div>
+              <button type="button" class="credit-stats__clear">Limpiar</button>
+            </section>
+            <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+            <span class="shell__cat-mock">Cat.</span>
+            <footer class="shell__footer">API docs: <a href="#">localhost:3001/docs</a></footer>
+          </div>
+        </div>
+      </section>
+
+      <section class="preview-block">
+        <span class="preview-block__label">V5</span>
+        <span class="preview-block__name">Minimal — stats sin caja</span>
+        <div class="shell shell--v5">
+          <header class="shell__header">
+            <div class="shell__title-block">
+              <h2>Malla Interactiva UDD</h2>
+              <p class="subtitle">IIT — UDD</p>
+            </div>
+            <section class="credit-stats" aria-hidden="true">
+              <div class="credit-stats__primary">
+                <p class="credit-stats__credits">
+                  <span class="credit-stats__approved">124</span><span class="credit-stats__divider">/</span><span>561</span>
+                  <span class="credit-stats__unit"> cr</span>
+                </p>
+                <p class="credit-stats__meta">18 / 71 ramos</p>
+              </div>
+              <div class="credit-stats__bar">
+                <div class="credit-stats__bar-fill" style="width: 22%"></div>
+                <span class="credit-stats__bar-label">22%</span>
+              </div>
+              <button type="button" class="credit-stats__clear">Limpiar</button>
+            </section>
+          </header>
+          <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">Universidad del Desarrollo</footer>
+        </div>
+      </section>
+    </div>
+
+    <p class="preview-divider">Creative explorations · V6–V15</p>
+
+    <div class="preview-list">
+      <!-- V6 Observatory -->
+      <section class="preview-block">
+        <span class="preview-block__label">V6</span>
+        <span class="preview-block__name">Observatory — escenario oscuro, stats como pills</span>
+        <div class="shell shell--v6">
+          <div class="shell__top">
+            <div class="shell__title-block">
+              <h2>Malla Interactiva UDD</h2>
+              <p class="subtitle">IIT — planifica bajo el horizonte</p>
+            </div>
+            <div class="shell__pills">
+              <span class="mock-stat-pill">124 / 561 cr</span>
+              <span class="mock-stat-pill">22%</span>
+              <span class="mock-stat-pill">18 / 71 ramos</span>
+            </div>
+          </div>
+          <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">Universidad del Desarrollo</footer>
+        </div>
+        <p class="preview-block__note">La grilla “flota” en un panel oscuro; stats ligeros arriba.</p>
+      </section>
+
+      <!-- V7 Split rail -->
+      <section class="preview-block">
+        <span class="preview-block__label">V7</span>
+        <span class="preview-block__name">Split rail — columna de progreso a la izquierda</span>
+        <div class="shell shell--v7">
+          <div class="shell__layout">
+            <aside class="shell__rail">
+              <span class="shell__rail-label">Créditos</span>
+              <span class="shell__rail-value">124</span>
+              <span class="shell__rail-label">de 561</span>
+              <div class="shell__rail-bar"><div class="shell__rail-bar-fill"></div></div>
+              <span class="shell__rail-label" style="margin-top: 0.35rem">Ramos 18/71</span>
+              <button type="button" class="credit-stats__clear" style="margin-top: 0.35rem; width: 100%">Limpiar</button>
+            </aside>
+            <div class="shell__main">
+              <h2>Malla Interactiva UDD</h2>
+              <p class="subtitle">IIT — Universidad del Desarrollo</p>
+              <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+            </div>
+          </div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">API docs: <a href="#">localhost:3001/docs</a></footer>
+        </div>
+        <p class="preview-block__note">Stats siempre visibles; grilla gana ancho en desktop.</p>
+      </section>
+
+      <!-- V8 Ticker -->
+      <section class="preview-block">
+        <span class="preview-block__label">V8</span>
+        <span class="preview-block__name">Ticker — franja de métricas segmentada</span>
+        <div class="shell shell--v8">
+          <div class="shell__mast">
+            <h2>Malla Interactiva</h2>
+            <p class="subtitle">Ingeniería Civil en Informática — UDD</p>
+          </div>
+          <div class="shell__ticker">
+            <div class="shell__tick"><strong>124</strong>Créditos</div>
+            <div class="shell__tick"><strong>561</strong>Meta total</div>
+            <div class="shell__tick"><strong>22%</strong>Avance</div>
+            <div class="shell__tick"><strong>53</strong>Ramos rest.</div>
+          </div>
+          <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">Universidad del Desarrollo</footer>
+        </div>
+        <p class="preview-block__note">Sensación editorial / periódico; números escaneables.</p>
+      </section>
+
+      <!-- V9 Blueprint -->
+      <section class="preview-block">
+        <span class="preview-block__label">V9</span>
+        <span class="preview-block__name">Blueprint — papel cuadriculado, tipografía mono</span>
+        <div class="shell shell--v9">
+          <header class="shell__header">
+            <div class="shell__title-block">
+              <h2>Malla Interactiva UDD</h2>
+              <p class="subtitle">IIT · plan de estudios</p>
+            </div>
+            <section class="credit-stats" aria-hidden="true">
+              <div class="credit-stats__primary">
+                <p class="credit-stats__credits">
+                  <span class="credit-stats__approved">124</span><span class="credit-stats__divider">/</span><span>561</span>
+                </p>
+              </div>
+              <button type="button" class="credit-stats__clear">Limpiar</button>
+            </section>
+          </header>
+          <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          <div class="mock-cat-chips">
+            <span class="mock-cat-chip"><span class="mock-cat-chip__dot" style="background: var(--color-semester-bg)"></span>IIA 50%</span>
+            <span class="mock-cat-chip"><span class="mock-cat-chip__dot" style="background: var(--color-trimester-bg)"></span>GIC 12%</span>
+            <span class="mock-cat-chip"><span class="mock-cat-chip__dot" style="background: var(--color-accent)"></span>EEL 0%</span>
+          </div>
+          <footer class="shell__footer">UDD · malla curricular</footer>
+        </div>
+        <p class="preview-block__note">Técnico y preciso; categorías como chips en vez de panel flotante.</p>
+      </section>
+
+      <!-- V10 Mosaic -->
+      <section class="preview-block">
+        <span class="preview-block__label">V10</span>
+        <span class="preview-block__name">Mosaic — cuatro tiles de métricas</span>
+        <div class="shell shell--v10">
+          <div class="shell__title-row">
+            <div>
+              <h2>Malla Interactiva UDD</h2>
+              <p class="subtitle">IIT — UDD</p>
+            </div>
+          </div>
+          <div class="shell__tiles">
+            <div class="shell__tile"><span class="shell__tile-value">124</span><span class="shell__tile-label">Créditos</span></div>
+            <div class="shell__tile"><span class="shell__tile-value">22%</span><span class="shell__tile-label">Avance</span></div>
+            <div class="shell__tile"><span class="shell__tile-value">18</span><span class="shell__tile-label">Aprobados</span></div>
+            <div class="shell__tile"><span class="shell__tile-value">53</span><span class="shell__tile-label">Restantes</span></div>
+          </div>
+          <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">API docs: <a href="#">localhost:3001/docs</a></footer>
+        </div>
+        <p class="preview-block__note">Dashboard compacto; cada métrica en su celda.</p>
+      </section>
+
+      <!-- V11 Magazine -->
+      <section class="preview-block">
+        <span class="preview-block__label">V11</span>
+        <span class="preview-block__name">Magazine — titular grande, stats en columnas</span>
+        <div class="shell shell--v11">
+          <h2>Malla Interactiva UDD</h2>
+          <div class="shell__rule"></div>
+          <p class="subtitle">Ingeniería Civil en Informática e Innovación Tecnológica</p>
+          <div class="shell__stats-row">
+            <div class="shell__stat-block">
+              <strong>124 / 561</strong>
+              <span>créditos aprobados</span>
+            </div>
+            <div class="shell__stat-block">
+              <strong>18 / 71</strong>
+              <span>ramos completados</span>
+            </div>
+          </div>
+          <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">Universidad del Desarrollo</footer>
+        </div>
+        <p class="preview-block__note">Jerarquía tipográfica fuerte; sensación de revista académica.</p>
+      </section>
+
+      <!-- V12 Ledger -->
+      <section class="preview-block">
+        <span class="preview-block__label">V12</span>
+        <span class="preview-block__name">Ledger — marco en L envolviendo la grilla</span>
+        <div class="shell shell--v12">
+          <div class="shell__frame">
+            <div class="shell__frame-title"><h2>Malla Interactiva · IIT</h2></div>
+            <div class="shell__frame-stats">
+              <em>124/561</em>
+              créditos<br />
+              22% avance<br />
+              18 ramos
+              <button type="button" class="credit-stats__clear" style="margin-top: 0.4rem; width: 100%; font-size: 0.62rem">Limpiar</button>
+            </div>
+            <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          </div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">UDD</footer>
+        </div>
+        <p class="preview-block__note">Stats anclados al borde; grilla como página contable.</p>
+      </section>
+
+      <!-- V13 Tabs -->
+      <section class="preview-block">
+        <span class="preview-block__label">V13</span>
+        <span class="preview-block__name">Tabs — categorías integradas sobre la grilla</span>
+        <div class="shell shell--v13">
+          <div class="shell__header-compact">
+            <h2>Malla Interactiva UDD</h2>
+            <span class="shell__inline-stats"><strong>124/561</strong> cr · 22%</span>
+          </div>
+          <div class="shell__tabs">
+            <span class="shell__tab shell__tab--active">IIA</span>
+            <span class="shell__tab">GIC</span>
+            <span class="shell__tab">EEL</span>
+            <span class="shell__tab">HAB</span>
+            <span class="shell__tab">TEL</span>
+            <span class="shell__tab">TODOS</span>
+          </div>
+          <div class="shell__grid-mock">Malla grid (sin cambios) — filtrada por categoría activa</div>
+          <footer class="shell__footer">Universidad del Desarrollo</footer>
+        </div>
+        <p class="preview-block__note">Reemplaza el panel Cat. flotante con tabs (requiere lógica de filtro).</p>
+      </section>
+
+      <!-- V14 Desk -->
+      <section class="preview-block">
+        <span class="preview-block__label">V14</span>
+        <span class="preview-block__name">Desk — panel translúcido tipo escritorio</span>
+        <div class="shell shell--v14">
+          <header class="shell__header">
+            <div class="shell__title-block">
+              <h2>Malla Interactiva UDD</h2>
+              <p class="subtitle">IIT — Universidad del Desarrollo</p>
+            </div>
+            <section class="credit-stats" aria-hidden="true">
+              <div class="credit-stats__primary">
+                <p class="credit-stats__credits">
+                  <span class="credit-stats__approved">124</span><span class="credit-stats__divider">/</span><span>561</span>
+                  <span class="credit-stats__unit"> cr</span>
+                </p>
+                <p class="credit-stats__meta">18 / 71 ramos</p>
+              </div>
+              <div class="credit-stats__bar">
+                <div class="credit-stats__bar-fill" style="width: 22%"></div>
+                <span class="credit-stats__bar-label">22%</span>
+              </div>
+              <button type="button" class="credit-stats__clear">Limpiar</button>
+            </section>
+          </header>
+          <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          <span class="shell__cat-mock">Cat.</span>
+          <footer class="shell__footer">API docs: <a href="#">localhost:3001/docs</a></footer>
+        </div>
+        <p class="preview-block__note">Superficie suave tipo “escritorio”; calidez sin oscurecer la grilla.</p>
+      </section>
+
+      <!-- V15 HUD -->
+      <section class="preview-block">
+        <span class="preview-block__label">V15</span>
+        <span class="preview-block__name">HUD — consola terminal, readout de progreso</span>
+        <div class="shell shell--v15">
+          <div class="shell__title-block">
+            <h2>Malla Interactiva UDD</h2>
+            <p class="subtitle">IIT · session active</p>
+          </div>
+          <div class="shell__hud-line">
+            &gt; credits: <strong>124/561</strong> · progress: <strong>22%</strong> · courses: <strong>18/71</strong>
+          </div>
+          <div class="shell__grid-mock">Malla grid (sin cambios)</div>
+          <span class="shell__cat-mock">[CAT]</span>
+          <footer class="shell__footer">// udd.cl · malla v0.1</footer>
+        </div>
+        <p class="preview-block__note">Atmosférico / dev-tool; contraste alto en el chrome solamente.</p>
+      </section>
+    </div>
+  </body>
+</html>

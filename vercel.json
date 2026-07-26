@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm run build:vercel",
+  "outputDirectory": "packages/frontend/dist",
+  "framework": null,
+  "env": {
+    "CURRICULUM_SOURCE": "json",
+    "DATA_DIR": "./data"
+  },
+  "build": {
+    "env": {}
+  },
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "data/**",
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api?path=$1" },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

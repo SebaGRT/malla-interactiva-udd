@@ -1,0 +1,27 @@
+{
+  "name": "malla-interactiva-udd",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Interactive curriculum planner for Universidad del Desarrollo",
+  "scripts": {
+    "dev": "pnpm --filter @malla-udd/backend dev",
+    "dev:frontend": "pnpm --filter @malla-udd/frontend dev",
+    "build": "pnpm -r build",
+    "build:vercel": "pnpm --filter @malla-udd/shared build && pnpm --filter @malla-udd/backend build && pnpm --filter @malla-udd/frontend build && node scripts/bundle-vercel-api.mjs",
+    "start": "pnpm --filter @malla-udd/backend start",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "db:import": "pnpm --filter @malla-udd/backend db:import",
+    "validate:curriculum": "pnpm --filter @malla-udd/shared build && node scripts/validate-curriculum.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.5"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "packageManager": "pnpm@10.12.1",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  }
+}

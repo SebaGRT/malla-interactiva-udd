@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Instalar dependencias
+        run: pnpm install --frozen-lockfile
+      - name: Compilar el paquete compartido
+        run: pnpm --filter @malla-udd/shared build
+      - name: Verificar tipos
+        run: pnpm -r typecheck
+      - name: Tests
+        run: pnpm -r test
+      - name: Build de producción
+        run: pnpm run build:vercel

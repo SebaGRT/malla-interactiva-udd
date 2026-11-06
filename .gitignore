@@ -13,3 +13,6 @@ data/malla.db-*
 .vercel
 .hallmark/
 .agents/
+
+# Mapa de fuentes del bundle de Vercel (se regenera en cada build)
+api/*.map

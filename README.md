@@ -1,6 +1,15 @@
 # Malla Interactiva UDD
 
+[![CI](https://github.com/SebaGRT/malla-interactiva-udd/actions/workflows/ci.yml/badge.svg)](https://github.com/SebaGRT/malla-interactiva-udd/actions/workflows/ci.yml)
+[![Demo](https://img.shields.io/badge/demo-malla--interactiva--udd.vercel.app-000?logo=vercel)](https://malla-interactiva-udd.vercel.app)
+
 Planificador curricular interactivo para la **Universidad del Desarrollo**. Es una reescritura en TypeScript inspirada en [Malla Interactiva](https://github.com/BooterMan98/malla-interactiva), creada originalmente para la USM.
+
+La malla oficial de la UDD no permite marcar ramos aprobados ni ver qué se desbloquea después. Esta herramienta lo hace: calcula créditos y avance por línea formativa, valida los prerrequisitos de cada asignatura y guarda el progreso en el navegador.
+
+🔗 **Demo:** <https://malla-interactiva-udd.vercel.app>
+
+![Malla Interactiva UDD](docs/capturas/malla.png)
 
 ## Tecnologías
 
